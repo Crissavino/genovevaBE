@@ -119,34 +119,36 @@ class CreateProductosTable extends Migration
         Schema::create('imagenesdetalles', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('path');
-            $table->softDeletesTz();
-            $table->timestampsTz();
-        });
-
-
-        Schema::create('imagenesdetalle_producto', function (Blueprint $table) {
-            $table->bigIncrements('id');
             $table->integer('producto_id')->unsigned();
-            $table->integer('imagenesdetalle_id')->unsigned();
             $table->softDeletesTz();
             $table->timestampsTz();
         });
+
+
+        // Schema::create('imagenesdetalle_producto', function (Blueprint $table) {
+        //     $table->bigIncrements('id');
+        //     $table->integer('producto_id')->unsigned();
+        //     $table->integer('imagenesdetalle_id')->unsigned();
+        //     $table->softDeletesTz();
+        //     $table->timestampsTz();
+        // });
 
         Schema::create('imagenesshops', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('path');
-            $table->softDeletesTz();
-            $table->timestampsTz();
-        });
-
-
-        Schema::create('imagenesshop_producto', function (Blueprint $table) {
-            $table->bigIncrements('id');
             $table->integer('producto_id')->unsigned();
-            $table->integer('imagenesshop_id')->unsigned();
             $table->softDeletesTz();
             $table->timestampsTz();
         });
+
+
+        // Schema::create('imagenesshop_producto', function (Blueprint $table) {
+        //     $table->bigIncrements('id');
+        //     $table->integer('producto_id')->unsigned();
+        //     $table->integer('imagenesshop_id')->unsigned();
+        //     $table->softDeletesTz();
+        //     $table->timestampsTz();
+        // });
 
     }
 

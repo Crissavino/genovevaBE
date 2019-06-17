@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Imagenesdetalle extends Model
 {
-    protected $fillable = ['path'];
+    protected $fillable = ['path', 'producto_id'];
     
     use SoftDeletes;
 
     public function productos()
     {
-        return $this->hasMany('App\Modelos\Producto');
+        return $this->belongsTo('App\Modelos\Producto');
     }
 }

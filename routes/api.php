@@ -21,5 +21,23 @@ Route::get('/productos', 'Productos\ProductController@showProducts')->middleware
 
 Route::get('/producto/{id}', 'Productos\ProductController@getProducto')->middleware('cors');
 
+Route::get('/producto/{id}/stock', 'Productos\ProductController@getStockProducto')->middleware('cors');
+
 Route::get('/datos', 'Productos\ProductController@getDatos')->middleware('cors');
+
+Route::get('/imagenesShop', 'Productos\ProductController@getImagenesShop')->middleware('cors');
+
+Route::get('/imagenesDetalle/{id}', 'Productos\ProductController@getImagenesDetalle')->middleware('cors');
+
+Route::get('/usuario/{id}', 'Controller@getUsuario')->middleware('cors');
+
+// retuas login y registro
+// Auth::routes();
+
+Route::post('/login', 'Auth\LoginController@authenticate');
+Route::post('/registro', 'Auth\RegisterController@registroAngular');
+Route::get('/logout', 'Auth\LoginController@logout');
+
+
+
 

@@ -14,41 +14,13 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function show()
+    public function getUsuario($id)
     {
-        $ejemplos = \App\Ejemplo::all();
-        $response = Response::json($ejemplos, 200);
+        $usuario = \App\User::find($id);
+
+        $response = Response::json($usuario, 200);
+
         return $response;
     }
 
-    public function store(Request $request)
-    {
-        //validacion
-        if ((!$request->title) || (!$request->description)) {
-            $response = Response::json([
-                'message' => 'Por favor escriba todos los campos requeridos',
-            ], 422);
-            return $response;
-        }
-
-        $ejemplo = new \App\Ejemplo(array(
-            'title' => trim($request->title),
-            'description' => trim($request->description),
-            'user_id' => 1,
-        ));
-
-        $ejemplo->save();
-
-        $message = 'Su imagen ha sido guardada correctamente';
-
-        $response = Response::json([
-            'message' => $message,
-            'data' => $ejemplo,
-        ], 201);
-
-        return $response;
-
-
-
-    }
 }

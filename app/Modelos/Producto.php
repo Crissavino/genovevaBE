@@ -39,11 +39,11 @@ class Producto extends Model
 
     public function imagenesdetalles()
     {
-        return $this->belongsToMany('App\Modelos\Imagenesdetalle');
+        return $this->hasMany('App\Modelos\Imagenesdetalle');
     }
 
     public function imagenesshops()
     {
-        return $this->belongsToMany('App\Modelos\Imagenesshop');
+        return $this->hasMany('App\Modelos\Imagenesshop');
     }
 }

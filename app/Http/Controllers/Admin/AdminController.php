@@ -116,16 +116,18 @@ class AdminController extends Controller
 
             $pathImagen = str_replace('public', 'storage', $pathImagen);
 
-            $datos = ['path' => $pathImagen];
+            $urlBackEnd = 'http://127.0.0.1:8000/';
+
+            $datos = ['path' => $urlBackEnd.$pathImagen, 'producto_id' => $idProducto];
 
             $guardoImagenShop = \App\Modelos\Imagenesshop::create($datos);
 
-            $imagenesShopsIds[] = $guardoImagenShop->id;
+            // $imagenesShopsIds[] = $guardoImagenShop->id;
 
         }
 
         //guardo la relacion con imagenesShop en la tabla pivot
-        $producto->imagenesshops()->sync($imagenesShopsIds);
+        // $producto->imagenesshops()->sync($imagenesShopsIds);
 
         //guardo las imagenes del detalle en su tabla y relaciono
         for ($i=0; $i < count($data['imagenDetalle']); $i++) { 
@@ -138,15 +140,17 @@ class AdminController extends Controller
 
             $pathImagen = str_replace('public', 'storage', $pathImagen);
 
-            $datos = ['path' => $pathImagen];
+            $urlBackEnd = 'http://127.0.0.1:8000/';
+
+            $datos = ['path' => $urlBackEnd.$pathImagen, 'producto_id' => $idProducto];
 
             $guardoImagenDetalle = \App\Modelos\Imagenesdetalle::create($datos);
 
-            $imagenesDetallesIds[] = $guardoImagenDetalle->id;
+            // $imagenesDetallesIds[] = $guardoImagenDetalle->id;
         }
         
         //guardo la relacion con imagenesDetalle en la tabla pivot
-        $producto->imagenesdetalles()->sync($imagenesDetallesIds);
+        // $producto->imagenesdetalles()->sync($imagenesDetallesIds);
         
         for ($i=0; $i < count($data['talles']); $i++) {
             $stock = ['producto_id' => $idProducto, 'talle_id' => $data['talles'][$i], 'cantidad' => $data['cantidadId'.$data['talles'][$i]]];
@@ -180,6 +184,7 @@ class AdminController extends Controller
         $talles = \App\Modelos\Talle::all();
 
         $imagenesshops = \App\Modelos\Imagenesshop::all();
+
         $imagenesdetalles = \App\Modelos\Imagenesdetalle::all();
 
         return view('admin.producto-edit', [
@@ -217,15 +222,17 @@ class AdminController extends Controller
 
                 $pathImagen = str_replace('public', 'storage', $pathImagen);
 
-                $datos = ['path' => $pathImagen];
+                $urlBackEnd = 'http://127.0.0.1:8000/';
+
+                $datos = ['path' => $urlBackEnd.$pathImagen, 'producto_id' => $id];
 
                 $producto->imagenesshops[$i]->update($datos);
 
-                $imagenesShopsIds[] = $producto->imagenesshops[$i]->id;
+                // $imagenesShopsIds[] = $producto->imagenesshops[$i]->id;
 
             }
             //guardo la relacion con imagenesShop en la tabla pivot
-            $producto->imagenesshops()->sync($imagenesShopsIds);
+            // $producto->imagenesshops()->sync($imagenesShopsIds);
 
         }
 
@@ -235,7 +242,7 @@ class AdminController extends Controller
 
         if (isset($data['imagenDetalle'])) {
             if (count($data['imagenDetalle']) > count($producto->imagenesdetalles)) {
-                $imagenesDetallesIds = [];
+                // $imagenesDetallesIds = [];
                 for ($i=0; $i < count($producto->imagenesdetalles); $i++) { 
 
                     $imagen = str_slug($data['titulo']).'-ImagenDetalle'.($i + 1);
@@ -246,11 +253,13 @@ class AdminController extends Controller
 
                     $pathImagen = str_replace('public', 'storage', $pathImagen);
 
-                    $datos = ['path' => $pathImagen];
+                    $urlBackEnd = 'http://127.0.0.1:8000/';
+
+                    $datos = ['path' => $urlBackEnd.$pathImagen, 'producto_id' => $id];
 
                     $producto->imagenesdetalles[$i]->update($datos);
 
-                    $imagenesDetallesIds[] = $producto->imagenesdetalles[$i]->id;
+                    // $imagenesDetallesIds[] = $producto->imagenesdetalles[$i]->id;
 
                 }
 
@@ -264,12 +273,13 @@ class AdminController extends Controller
 
                     $pathImagen = str_replace('public', 'storage', $pathImagen);
 
-                    $datos = ['path' => $pathImagen];
+                    $urlBackEnd = 'http://127.0.0.1:8000/';
+
+                    $datos = ['path' => $urlBackEnd.$pathImagen, 'producto_id' => $id];
 
                     $guardoImagenDetalle = \App\Modelos\Imagenesdetalle::create($datos);
 
-
-                    $imagenesDetallesIds[] = $guardoImagenDetalle->id;
+                    // $imagenesDetallesIds[] = $guardoImagenDetalle->id;
 
                 }
             }else{
@@ -284,11 +294,13 @@ class AdminController extends Controller
 
                     $pathImagen = str_replace('public', 'storage', $pathImagen);
 
-                    $datos = ['path' => $pathImagen];
+                    $urlBackEnd = 'http://127.0.0.1:8000/';
+
+                    $datos = ['path' => $urlBackEnd.$pathImagen, 'producto_id' => $id];
 
                     $producto->imagenesdetalles[$i]->update($datos);
 
-                    $imagenesDetallesIds[] = $producto->imagenesdetalles[$i]->id;
+                    // $imagenesDetallesIds[] = $producto->imagenesdetalles[$i]->id;
                 }
 
                 for ($i=count($data['imagenDetalle']); $i < count($producto->imagenesdetalles); $i++) { 
@@ -296,7 +308,7 @@ class AdminController extends Controller
                 }
             }
             //guardo la relacion con imagenesDetalle en la tabla pivot
-            $producto->imagenesdetalles()->sync($imagenesDetallesIds);
+            // $producto->imagenesdetalles()->sync($imagenesDetallesIds);
         }
         
         if (isset($data['talles'])) {

@@ -28,9 +28,20 @@ class ProductController extends Controller
 
         $categoriasPrincipales = \App\Modelos\Categoria::all();
         $categoriasSecundarias = \App\Modelos\Categoriassecundaria::all();
-        $data = ['principales' => $categoriasPrincipales, 'secundarias' => $categoriasSecundarias];
+        $talles = \App\Modelos\Talle::all();
+        $colores = \App\Modelos\Colore::all();
+        $data = ['principales' => $categoriasPrincipales, 'secundarias' => $categoriasSecundarias, 'talles' => $talles, 'colores' => $colores];
 
         $response = Response::json($data, 200);
+
+        return $response;
+    }
+
+    public function getImagenesShop(){
+        
+        $imagenesShop = \App\Modelos\Imagenesshop::all();
+
+        $response = Response::json($imagenesShop, 200);
 
         return $response;
     }
@@ -50,68 +61,26 @@ class ProductController extends Controller
 
     }
 
-     public function storeProduct()
-    {
-        // la imagen debe guardarse en --> http://127.0.0.1:8000/storage/productos/imagen2/product-9.jpg (storage/productos/imagen2/product-9.jpg)
-
-    }
-    
-    public function editarProducto(Request $request, $id)
-    {
-        // tengo que ver el video de youtube para ver como guardar y editar imagene
-        // https: //www.youtube.com/watch?v=irfbIOi6DkQ&list=PLEtcGQaT56chhi-qsqxIrUG_n9pXYCZ8z&index=27
-        // if ((!$request->titulo) || (!$request->descripcion) || (!$request->detalle) || (!$request->imagen1) || (!$request->imagen2) || (!$request->categoria_id) || (!$request->precio) || (!$request->stock)) {
-        //     $response = Response::json([
-        //         'message' => 'Por favor escriba todos los campos requeridos',
-        //     ], 422);
-
-        //     return $response;
-        // }
-
-        // $producto = \App\Modelos\Producto::find($request->id);
-
-        // if (!$producto) {
-        //     return Response::json([
-        //         'error' => [
-        //             'message' => 'No se ha encontrado el producto',
-        //         ],
-        //     ], 404);
-        // }
-
-
-
-        // $producto->titulo = trim($request->titulo);
-        // $producto->descripcion = trim($request->descripcion);
-        // $producto->detalle = trim($request->detalle);
-        // $producto->imagen1 = trim($request->imagen1);
-        // $producto->imagen2 = trim($request->imagen2);
-        // $producto->categoria_id = trim($request->categoria_id);
-        // $producto->precio = trim($request->precio);
-        // if ($request->descuento) {
-        //     $producto->descuento = trim($request->descuento);
-        // }
-        // $producto->stock = trim($request->stock);
-        // $producto->save();
-
-        // $message = 'El producto se actualizó correctamente';
-
-        // $response = Response::json([
-        //     'message' => $message,
-        //     'data' => $producto,
-        // ], 201);
-
-        $respuesta = $request;
+    public function getImagenesDetalle($id){
         
-        return $respuesta;
+        $imagenesDetalle = \App\Modelos\Imagenesdetalle::WHERE('producto_id', '=', $id)->get();
 
+        $response = Response::json($imagenesDetalle, 200);
+
+        return $response;
     }
 
-    public function guardarImagenes(Request $request) 
-    {
-        $data = $request;
+    public function getStockProducto($id){
+        
+        $stockProducto = \App\Modelos\Stock::WHERE('producto_id', '=', $id)->get();
 
-        // $archivo = $data['0']['archivo'];
-        return $data;
-        // return $request;
+        $response = Response::json($stockProducto, 200);
+
+        return $response;
     }
+
+    // public function getImagenesProducto($id){
+
+    // }
+
 }

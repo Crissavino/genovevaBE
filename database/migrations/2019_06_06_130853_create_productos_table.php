@@ -22,7 +22,7 @@ class CreateProductosTable extends Migration
             // $table->string('imagen2');
             $table->integer('descuento')->nullable();
             $table->integer('categoria_id');
-            $table->decimal('precio', 8, 0);
+            $table->integer('precio');
             // $table->integer('stock');
             $table->softDeletesTz();
             $table->timestampsTz();
@@ -150,6 +150,32 @@ class CreateProductosTable extends Migration
         //     $table->timestampsTz();
         // });
 
+        Schema::create('carritos', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->integer('user_id')->unsigned();
+            $table->integer('producto_id')->unsigned();
+            $table->integer('cantidad');
+            $table->string('talle');
+            $table->softDeletesTz();
+            $table->timestampsTz();
+        });
+
+        Schema::create('ordenes', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->integer('user_id')->unsigned();
+            $table->integer('numOrden');
+            $table->softDeletesTz();
+            $table->timestampsTz();
+        });
+
+        Schema::create('carrito_ordene', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->integer('carrito_id')->unsigned();
+            $table->integer('ordene_id')->unsigned();
+            $table->softDeletesTz();
+            $table->timestampsTz();
+        });
+
     }
 
     /**
@@ -173,5 +199,8 @@ class CreateProductosTable extends Migration
         Schema::dropIfExists('imagenesdetalle_producto');
         Schema::dropIfExists('imagenesshops');
         Schema::dropIfExists('imagenesshop_producto');
+        Schema::dropIfExists('carritos');
+        Schema::dropIfExists('ordenes');
+        Schema::dropIfExists('carrito_ordene');
     }
 }

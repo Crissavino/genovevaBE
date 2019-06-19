@@ -38,6 +38,10 @@ Route::post('/login', 'Auth\LoginController@authenticate');
 Route::post('/registro', 'Auth\RegisterController@registroAngular');
 Route::get('/logout', 'Auth\LoginController@logout');
 
+// carrito
+Route::post('/guardarCarrito', 'Productos\ProductController@guardarCarrito');
+Route::get('/getCarrito/{userId}', 'Productos\ProductController@getCarrito');
+
 
 
 

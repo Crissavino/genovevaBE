@@ -76,8 +76,8 @@ class RegisterController extends Controller
     protected function registroAngular(Request $request)
     {
         return User::create([
-            'name' => $request->nombre,
-            'lastname' => $request->apellido,
+            'name' => $request->name,
+            'lastname' => $request->lastname,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);

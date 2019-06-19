@@ -79,8 +79,29 @@ class ProductController extends Controller
         return $response;
     }
 
-    // public function getImagenesProducto($id){
+    public function guardarCarrito(Request $request){
 
-    // }
+        $data = [
+            'producto_id' => $request->productId, 
+            'user_id' => $request->userId, 
+            'cantidad' => $request->cantidad,
+            'talle' => $request->talle
+        ];
+
+        // $carrito = \App\Modelos\Carrito::create($data);
+
+        return \App\Modelos\Carrito::create($data);
+
+    }
+
+    public function getCarrito($userId) {
+
+        $carrito = \App\Modelos\Carrito::WHERE('user_id', '=', $userId)->get();
+
+        $response = Response::json($carrito, 200);
+
+        return $response;
+
+    }
 
 }

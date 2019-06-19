@@ -120,7 +120,7 @@ class AdminController extends Controller
 
             $pathImagen = str_replace('public', 'storage', $pathImagen);
 
-            $urlBackEnd = 'http://genovevabe.cf';
+            $urlBackEnd = 'http://genovevabe.cf/';
             // $urlBackEnd = 'http://127.0.0.1:8000/';
 
             $datos = ['path' => $urlBackEnd.$pathImagen, 'producto_id' => $idProducto];
@@ -145,7 +145,7 @@ class AdminController extends Controller
 
             $pathImagen = str_replace('public', 'storage', $pathImagen);
 
-            $urlBackEnd = 'http://genovevabe.cf';
+            $urlBackEnd = 'http://genovevabe.cf/';
             // $urlBackEnd = 'http://127.0.0.1:8000/';
 
             $datos = ['path' => $urlBackEnd.$pathImagen, 'producto_id' => $idProducto];
@@ -228,7 +228,7 @@ class AdminController extends Controller
 
                 $pathImagen = str_replace('public', 'storage', $pathImagen);
 
-                $urlBackEnd = 'http://genovevabe.cf';
+                $urlBackEnd = 'http://genovevabe.cf/';
                 // $urlBackEnd = 'http://127.0.0.1:8000/';
 
                 $datos = ['path' => $urlBackEnd.$pathImagen, 'producto_id' => $id];
@@ -260,7 +260,7 @@ class AdminController extends Controller
 
                     $pathImagen = str_replace('public', 'storage', $pathImagen);
 
-                    $urlBackEnd = 'http://genovevabe.cf';
+                    $urlBackEnd = 'http://genovevabe.cf/';
                     // $urlBackEnd = 'http://127.0.0.1:8000/';
 
                     $datos = ['path' => $urlBackEnd.$pathImagen, 'producto_id' => $id];
@@ -281,7 +281,7 @@ class AdminController extends Controller
 
                     $pathImagen = str_replace('public', 'storage', $pathImagen);
 
-                    $urlBackEnd = 'http://genovevabe.cf';
+                    $urlBackEnd = 'http://genovevabe.cf/';
                     // $urlBackEnd = 'http://127.0.0.1:8000/';
 
                     $datos = ['path' => $urlBackEnd.$pathImagen, 'producto_id' => $id];
@@ -303,7 +303,7 @@ class AdminController extends Controller
 
                     $pathImagen = str_replace('public', 'storage', $pathImagen);
 
-                    $urlBackEnd = 'http://genovevabe.cf';
+                    $urlBackEnd = 'http://genovevabe.cf/';
                     // $urlBackEnd = 'http://127.0.0.1:8000/';
 
                     $datos = ['path' => $urlBackEnd.$pathImagen, 'producto_id' => $id];

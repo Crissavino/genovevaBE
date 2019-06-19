@@ -18,6 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/productos', 'Productos\ProductController@showProducts')->middleware('cors');
+Route::get('/productosdestacados', 'Productos\ProductController@getProductosDestacados')->middleware('cors');
 
 Route::get('/producto/{id}', 'Productos\ProductController@getProducto')->middleware('cors');
 
@@ -41,6 +42,7 @@ Route::get('/logout', 'Auth\LoginController@logout');
 // carrito
 Route::post('/guardarCarrito', 'Productos\ProductController@guardarCarrito');
 Route::get('/getCarrito/{userId}', 'Productos\ProductController@getCarrito');
+Route::delete('/deleteCarrito/{userId}', 'Productos\ProductController@deleteCarrito');
 
 
 

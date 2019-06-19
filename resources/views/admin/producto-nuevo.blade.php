@@ -48,6 +48,32 @@
                                 @endforeach
                             </select>
                         </div>
+
+                        <div class="form-group">
+                            <label class="d-block" for="">Es un producto nuevo?</label>
+                            <small class="d-block">Aparecerá una etiqueta arriba del producto que dice NEW</small>
+                            <div class="d-inline-block mr-3">
+                                <label for="">Sí</label>
+                                <input type="checkbox" name="nuevo" id="" value="1">
+                            </div>
+                            <div class="d-inline-block">
+                                <label for="">No</label>
+                                <input type="checkbox" name="nuevo" id="" value="0">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="d-block" for="">Queres destacar el producto?</label>
+                            <small class="d-block">Aparecerá en el home como Producto Popular</small>
+                            <div class="d-inline-block mr-3">
+                                <label for="">Sí</label>
+                                <input type="checkbox" name="popular" id="" value="1">
+                            </div>
+                            <div class="d-inline-block">
+                                <label for="">No</label>
+                                <input type="checkbox" name="popular" id="" value="0">
+                            </div>
+                        </div>
     
                         <div class="mb-3">
                             <label class="d-block" for="">Categoria secundaria</label>

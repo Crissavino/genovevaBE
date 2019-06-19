@@ -46,10 +46,13 @@ class AdminController extends Controller
 
     public function insertProducto()
     {
+        // dd(request()->all());
         request()->validate(
             [
                 'titulo' => 'required | min:3 | max:30',
                 'categoria_id' => 'required | numeric | min:1',
+                'nuevo' => 'required',
+                'popular' => 'required',
                 'categoriasSecundarias' => 'required | array | min:1 | max:3',
                 'imagenShop' => 'required | array | min:2 | max:2',
                 'imagenDetalle' => 'required | array | min:1 | max:5',
@@ -65,6 +68,8 @@ class AdminController extends Controller
                 'titulo.max' => 'El título debe tener como máximo 30 letras',
                 'categoria_id.required' => 'Tenes que elegir una categoria',
                 'categoria_id.min' => 'Tenes que elegir una categoria',
+                'nuevo.required' => 'Tenes que elegir si es un producto nuevo',
+                'popular.required' => 'Tenes que elegir si queres destacarlo',
                 'categoriasSecundarias.required' => 'Tenes que elegir por lo menos una categoria secundaria',
                 'categoriasSecundarias.min' => 'Como mínimo tenes que elegir 1 categoria secundaria',
                 'categoriasSecundarias.max' => 'Como máximo podes elegir 3 categorias secundarias',
@@ -94,7 +99,7 @@ class AdminController extends Controller
         
         
         $data = request()->all();
-        // // al producto van titulo descripcion detalle descuento categoria_id precio
+        // al producto van titulo descripcion detalle descuento categoria_id precio nuevo popular
 
         $guardoProducto = \App\Modelos\Producto::create($data);
 

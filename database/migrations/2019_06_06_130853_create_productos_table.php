@@ -18,6 +18,8 @@ class CreateProductosTable extends Migration
             $table->string('titulo');
             $table->text('descripcion');
             $table->string('detalle');
+            $table->boolean('nuevo');
+            $table->boolean('popular');
             // $table->string('imagen1');
             // $table->string('imagen2');
             $table->integer('descuento')->nullable();

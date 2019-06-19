@@ -14,23 +14,31 @@ class CategoriassecundariasTableSeeder extends Seeder
     {
         DB::table('categoriassecundarias')->insert(
             [
-                ['nombre' => 'CategoriaSecundaria1'],
+                ['nombre' => 'Remeras'],
 
-                ['nombre' => 'CategoriaSecundaria2'],
+                ['nombre' => 'Tops'],
 
-                ['nombre' => 'CategoriaSecundaria3'],
+                ['nombre' => 'Camisas'],
 
-                ['nombre' => 'CategoriaSecundaria4'],
+                ['nombre' => 'Blusas'],
 
-                ['nombre' => 'CategoriaSecundaria5'],
+                ['nombre' => 'Pantalones'],
 
-                ['nombre' => 'CategoriaSecundaria6'],
+                ['nombre' => 'Polleras'],
 
-                ['nombre' => 'CategoriaSecundaria7'],
+                ['nombre' => 'shorts'],
 
-                ['nombre' => 'CategoriaSecundaria8'],
+                ['nombre' => 'Bodys'],
 
-                ['nombre' => 'CategoriaSecundaria9'],
+                ['nombre' => 'Vestidos'],
+
+                ['nombre' => 'Monos'],
+
+                ['nombre' => 'Camperas'],
+
+                ['nombre' => 'Sacos'],
+
+                ['nombre' => 'Accesorios']
             ]
         );
 

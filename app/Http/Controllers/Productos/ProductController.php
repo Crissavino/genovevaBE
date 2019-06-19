@@ -61,6 +61,15 @@ class ProductController extends Controller
 
     }
 
+    public function getProductosDestacados(){
+
+        $productosDestacados = \App\Modelos\Producto::WHERE('popular', '=', 1)->get();
+
+        $response = Response::json($productosDestacados, 200);
+
+        return $response;
+    }
+
     public function getImagenesDetalle($id){
         
         $imagenesDetalle = \App\Modelos\Imagenesdetalle::WHERE('producto_id', '=', $id)->get();
@@ -101,6 +110,12 @@ class ProductController extends Controller
         $response = Response::json($carrito, 200);
 
         return $response;
+
+    }
+
+    public function deleteCarrito($id){
+
+        \App\Modelos\Carrito::find($id)->delete();
 
     }
 

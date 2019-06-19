@@ -19,10 +19,10 @@
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('#/admin', 'Admin\AdminController@show');
+Route::get('api/admin', 'Admin\AdminController@show');
 
-Route::get('#/admin/producto/nuevo', 'Admin\AdminController@createProducto');
-Route::post('#/admin/producto/nuevo', 'Admin\AdminController@insertProducto');
-Route::get('#/admin/producto/{id?}', 'Admin\AdminController@editProducto');
-Route::put('#/admin/producto/{id}', 'Admin\AdminController@updateProducto');
-Route::delete('#/admin/producto/borrar/{id}', 'Admin\AdminController@destroyProducto');
+Route::get('api/admin/producto/nuevo', 'Admin\AdminController@createProducto');
+Route::post('api/admin/producto/nuevo', 'Admin\AdminController@insertProducto');
+Route::get('api/admin/producto/{id?}', 'Admin\AdminController@editProducto');
+Route::put('api/admin/producto/{id}', 'Admin\AdminController@updateProducto');
+Route::delete('api/admin/producto/borrar/{id}', 'Admin\AdminController@destroyProducto');

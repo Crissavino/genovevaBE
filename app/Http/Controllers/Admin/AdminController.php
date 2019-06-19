@@ -46,7 +46,6 @@ class AdminController extends Controller
 
     public function insertProducto()
     {
-        // dd(request()->all());
         request()->validate(
             [
                 'titulo' => 'required | min:3 | max:30',
@@ -121,7 +120,8 @@ class AdminController extends Controller
 
             $pathImagen = str_replace('public', 'storage', $pathImagen);
 
-            $urlBackEnd = 'http://127.0.0.1:8000/';
+            $urlBackEnd = 'http://genovevabe.cf';
+            // $urlBackEnd = 'http://127.0.0.1:8000/';
 
             $datos = ['path' => $urlBackEnd.$pathImagen, 'producto_id' => $idProducto];
 
@@ -145,7 +145,8 @@ class AdminController extends Controller
 
             $pathImagen = str_replace('public', 'storage', $pathImagen);
 
-            $urlBackEnd = 'http://127.0.0.1:8000/';
+            $urlBackEnd = 'http://genovevabe.cf';
+            // $urlBackEnd = 'http://127.0.0.1:8000/';
 
             $datos = ['path' => $urlBackEnd.$pathImagen, 'producto_id' => $idProducto];
 
@@ -227,7 +228,8 @@ class AdminController extends Controller
 
                 $pathImagen = str_replace('public', 'storage', $pathImagen);
 
-                $urlBackEnd = 'http://127.0.0.1:8000/';
+                $urlBackEnd = 'http://genovevabe.cf';
+                // $urlBackEnd = 'http://127.0.0.1:8000/';
 
                 $datos = ['path' => $urlBackEnd.$pathImagen, 'producto_id' => $id];
 
@@ -258,7 +260,8 @@ class AdminController extends Controller
 
                     $pathImagen = str_replace('public', 'storage', $pathImagen);
 
-                    $urlBackEnd = 'http://127.0.0.1:8000/';
+                    $urlBackEnd = 'http://genovevabe.cf';
+                    // $urlBackEnd = 'http://127.0.0.1:8000/';
 
                     $datos = ['path' => $urlBackEnd.$pathImagen, 'producto_id' => $id];
 
@@ -278,7 +281,8 @@ class AdminController extends Controller
 
                     $pathImagen = str_replace('public', 'storage', $pathImagen);
 
-                    $urlBackEnd = 'http://127.0.0.1:8000/';
+                    $urlBackEnd = 'http://genovevabe.cf';
+                    // $urlBackEnd = 'http://127.0.0.1:8000/';
 
                     $datos = ['path' => $urlBackEnd.$pathImagen, 'producto_id' => $id];
 
@@ -299,7 +303,8 @@ class AdminController extends Controller
 
                     $pathImagen = str_replace('public', 'storage', $pathImagen);
 
-                    $urlBackEnd = 'http://127.0.0.1:8000/';
+                    $urlBackEnd = 'http://genovevabe.cf';
+                    // $urlBackEnd = 'http://127.0.0.1:8000/';
 
                     $datos = ['path' => $urlBackEnd.$pathImagen, 'producto_id' => $id];
 

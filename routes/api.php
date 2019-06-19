@@ -35,14 +35,14 @@ Route::get('/usuario/{id}', 'Controller@getUsuario')->middleware('cors');
 // retuas login y registro
 // Auth::routes();
 
-Route::post('/login', 'Auth\LoginController@authenticate')->middleware('cors');;
-Route::post('/registro', 'Auth\RegisterController@registroAngular')->middleware('cors');;
-Route::get('/logout', 'Auth\LoginController@logout')->middleware('cors');;
+Route::post('/login', 'Auth\LoginController@authenticate')->middleware('cors');
+Route::post('/registro', 'Auth\RegisterController@registroAngular')->middleware('cors');
+Route::get('/logout', 'Auth\LoginController@logout')->middleware('cors');
 
 // carrito
-Route::post('/guardarCarrito', 'Productos\ProductController@guardarCarrito')->middleware('cors');;
-Route::get('/getCarrito/{userId}', 'Productos\ProductController@getCarrito')->middleware('cors');;
-Route::delete('/deleteCarrito/{userId}', 'Productos\ProductController@deleteCarrito')->middleware('cors');;
+Route::post('/guardarCarrito', 'Productos\ProductController@guardarCarrito')->middleware('cors');
+Route::get('/getCarrito/{userId}', 'Productos\ProductController@getCarrito')->middleware('cors');
+Route::delete('/deleteCarrito/{userId}', 'Productos\ProductController@deleteCarrito')->middleware('cors');
 
 
 

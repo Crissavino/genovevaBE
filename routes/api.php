@@ -22,13 +22,15 @@ Route::get('/productosdestacados', 'Productos\ProductController@getProductosDest
 
 Route::get('/producto/{id}', 'Productos\ProductController@getProducto')->middleware('cors');
 
-Route::get('/producto/{id}/stock', 'Productos\ProductController@getStockProducto')->middleware('cors');
+// Route::get('/producto/{id}/stock', 'Productos\ProductController@getStockProducto')->middleware('cors');
+Route::get('/productos/stock', 'Productos\ProductController@getStockProducto')->middleware('cors');
 
 Route::get('/datos', 'Productos\ProductController@getDatos')->middleware('cors');
 
 Route::get('/imagenesShop', 'Productos\ProductController@getImagenesShop')->middleware('cors');
 
-Route::get('/imagenesDetalle/{id}', 'Productos\ProductController@getImagenesDetalle')->middleware('cors');
+Route::get('/imagenesDetalle', 'Productos\ProductController@getImagenesDetalle')->middleware('cors');
+// Route::get('/imagenesDetalle/{id}', 'Productos\ProductController@getImagenesDetalle')->middleware('cors');
 
 Route::get('/usuario/{id}', 'Controller@getUsuario')->middleware('cors');
 

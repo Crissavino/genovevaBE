@@ -70,18 +70,22 @@ class ProductController extends Controller
         return $response;
     }
 
-    public function getImagenesDetalle($id){
+    public function getImagenesDetalle(){
+    // public function getImagenesDetalle($id){
         
-        $imagenesDetalle = \App\Modelos\Imagenesdetalle::WHERE('producto_id', '=', $id)->get();
+        // $imagenesDetalle = \App\Modelos\Imagenesdetalle::WHERE('producto_id', '=', $id)->get();
+        $imagenesDetalle = \App\Modelos\Imagenesdetalle::all();
 
         $response = Response::json($imagenesDetalle, 200);
 
         return $response;
     }
 
-    public function getStockProducto($id){
+    public function getStockProducto(){
+    // public function getStockProducto($id){
         
-        $stockProducto = \App\Modelos\Stock::WHERE('producto_id', '=', $id)->get();
+        // $stockProducto = \App\Modelos\Stock::WHERE('producto_id', '=', $id)->get();
+        $stockProducto = \App\Modelos\Stock::all();
 
         $response = Response::json($stockProducto, 200);
 

@@ -3,7 +3,7 @@
 
 <head>
     @include('partials.head')
-    <title>Genobeba - Tablero Administrador</title>
+    <title>Genoveva - Tablero Administrador</title>
 </head>
 
 <body>

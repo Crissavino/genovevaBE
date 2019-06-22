@@ -10,11 +10,6 @@
         <a class="btn btn-outline-danger" href="/admin">Regresar</a>
 
         <hr>
-        {{--
-                <div *ngIf="actualizando" class="alert alert-info text-center" role="alert">
-                    <strong>Actualizando...</strong> por favor espere
-                </div> --}}
-
         <div class="row animated fadeIn fast">
             <div class="col-12">
                 
@@ -40,67 +35,115 @@
                             @endforeach
                         </select>
                     </div>
-                
-                    <div class="mb-3">
-                        <label class="d-block" for="">Categoria secundaria</label>
-                        <small>Podes seleccionar hasta 3</small>
+
+                    <div class="form-group esNuevo">
+                        <label class="d-block" for="">Es un producto nuevo?</label>
+                        <small class="d-block">Aparecerá una etiqueta arriba del producto que dice NEW</small>
+                        <div class="d-inline-block mr-3">
+                            <label for="">Sí</label>
+                            @if ($producto->nuevo == 1)
+                                <input type="checkbox" name="nuevo" id="nuevoSi" checked value="1">                                
+                            @else
+                                <input type="checkbox" name="nuevo" id="nuevoSi" value="1">
+                            @endif
+                        </div>
+                        <div class="d-inline-block">
+                            <label for="">No</label>
+                            @if ($producto->nuevo == 0)
+                                <input type="checkbox" name="nuevo" id="nuevoNo" checked value="0">                                
+                            @else
+                                <input type="checkbox" name="nuevo" id="nuevoNo" value="0">
+                            @endif
+                        </div>
                     </div>
-                    <div class="row form-group">
-                        @foreach ($categoriasSecundarias as $categoria)
-                            @php
-                                $categoriaIds = $producto->categoriassecundarias->pluck('id')->toArray();
-                                $checked = (in_array($categoria->id, $categoriaIds)) ? 'checked' : ''
-                            @endphp
+
+                    <div class="form-group esPopular">
+                        <label class="d-block" for="">Queres destacar el producto?</label>
+                        <small class="d-block">Aparecerá en el home como Producto Popular</small>
+                        <div class="d-inline-block mr-3">
+                            <label for="">Sí</label>
+                            @if ($producto->popular == 1)
+                                <input type="checkbox" name="popular" id="popularSi" checked value="1">
+                            @else
+                                <input type="checkbox" name="popular" id="popularSi" value="1">
+                            @endif
+                        </div>
+                        <div class="d-inline-block">
+                            <label for="">No</label>
+                            @if ($producto->popular == 0)
+                                <input type="checkbox" name="popular" id="popularNo" checked value="0">
+                            @else
+                                <input type="checkbox" name="popular" id="popularNo" value="0">
+                            @endif
+                        </div>
+                    </div>
+                
+                    <div class="catSecundarias">
+                        <div class="mb-3">
+                            <label class="d-block" for="">Categoria secundaria</label>
+                            <small>Podes seleccionar hasta 3</small>
+                        </div>
+                        <div class="row form-group">
+                            @foreach ($categoriasSecundarias as $categoria)
+                                @php
+                                    $categoriaIds = $producto->categoriassecundarias->pluck('id')->toArray();
+                                    $checked = (in_array($categoria->id, $categoriaIds)) ? 'checked' : ''
+                                @endphp
                             <div class="colo-3 col-sm-3">
                                 <label class="mr-1" for="{{ $categoria->id }}">{{ $categoria->nombre }}</label>
                                 <input {{ $checked }} type="checkbox" name="categoriasSecundarias[]" value="{{ $categoria->id }}"
                                     id="{{ $categoria->id }}">
                             </div>
-                        @endforeach
-                    </div>
-                
-                    <div class="mb-3">
-                        <label class="d-block for="">Imagenes que se verán en el shop</label>
-                        <small>Tenes que seleccionar dos</small>
-                    </div>
-                    <div class=" form-group custom-file mb-4">
-                        <label for="" class="custom-file-label imagenShop">Click para agregar</label>
-                        <input class="custom-file-input imagenShop-input" type="file" lang="es" name="imagenShop[]" multiple>
-                        
-                        <label class="mt-3" for="">Imágenes cargadas actualmente</label><br>
-                        <div class="row mb-4">
-                            @foreach ($imagenesshops as $imagen)
-                                @foreach ($producto->imagenesshops as $imagenProd)
-                                    @if ($imagenProd->id == $imagen->id)
-                                        {{-- <div style="display:inline-block; margin: 10px; width: 100px; height: 100px;"> --}}
-                                        <div class="col-sm-6 mt-4">
-                                            <img class="m-auto" style="display:block;" src="{{asset($imagen->path)}}" id="imagenShop-preview" width="200px;">
-                                        </div>
-                                    @endif
-                                @endforeach
                             @endforeach
                         </div>
                     </div>
                 
-                    <div class="mb-3 mt-4">
-                        <label class="d-block for="">Imagenes que se verán en la descripcion del producto</label>
-                        <small>Podes seleccionar hasta 5</small>
-                    </div>
-                    <div class="form-group custom-file mb-4">
-                        <label for="" class="custom-file-label imagenDetalle">Click para agregar</label>
-                        <input class="custom-file-input imagenDetalle-input" type="file" lang="es" name="imagenDetalle[]" multiple>
-
-                        <label class="mt-3" for="">Imágenes cargadas actualmente</label><br>
-                        <div class="mb-4">
-                            @foreach ($imagenesdetalles as $imagen)
-                                @foreach ($producto->imagenesdetalles as $imagenProd)
-                                    @if ($imagenProd->id == $imagen->id)
-                                        <div class="d-inline-block mt-4 col-sm-3">
-                                            <img class="d-block" style="display:block;" src="{{asset($imagen->path)}}" id="imagenDetalle-preview" width="200px;">
-                                        </div>
-                                    @endif
+                    <div class="imagenShopDiv">
+                        <div class="mb-3">
+                            <label class="d-block for="">Imagenes que se verán en el shop</label>
+                            <small>Tenes que seleccionar dos</small>
+                        </div>
+                        <div class=" form-group custom-file mb-4">
+                            <label for="" class="custom-file-label imagenShop">Click para agregar</label>
+                            <input class="custom-file-input imagenShop-input" type="file" lang="es" name="imagenShop[]" multiple>
+                            
+                            <label class="mt-3" for="">Imágenes cargadas actualmente</label><br>
+                            <div class="mb-4">
+                                @foreach ($imagenesshops as $imagen)
+                                    @foreach ($producto->imagenesshops as $imagenProd)
+                                        @if ($imagenProd->id == $imagen->id)
+                                            {{-- <div style="display:inline-block; margin: 10px; width: 100px; height: 100px;"> --}}
+                                            <div class="d-inline-block col-sm-4 mt-4">
+                                                <img class="m-auto imagenesShopAnteriores" style="display:block;" src="{{asset($imagen->path)}}" id="imagenShop-preview" width="200px;">
+                                            </div>
+                                        @endif
+                                    @endforeach
                                 @endforeach
-                            @endforeach
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="imagenDetalleDiv">
+                        <div class="mb-3 mt-4">
+                            <label class="d-block for="">Imagenes que se verán en la descripcion del producto</label>
+                            <small>Podes seleccionar hasta 5</small>
+                        </div>
+                        <div class="form-group custom-file mb-4">
+                            <label for="" class="custom-file-label imagenDetalle">Click para agregar</label>
+                            <input class="custom-file-input imagenDetalle-input" type="file" lang="es" name="imagenDetalle[]" multiple>
+
+                            <label class="mt-3" for="">Imágenes cargadas actualmente</label><br>
+                            <div class="mb-4">
+                                @foreach ($imagenesdetalles as $imagen)
+                                    @foreach ($producto->imagenesdetalles as $imagenProd)
+                                        @if ($imagenProd->id == $imagen->id)
+                                            <div class="d-inline-block mt-4 col-sm-3">
+                                                <img class="d-block imagenesDetalleAnteriores" style="display:block;" src="{{asset($imagen->path)}}" id="imagenDetalle-preview" width="200px;">
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 
@@ -108,8 +151,6 @@
                         <label for="">Detalle</label>
                         <input type="text" name="detalle" class="form-control" placeholder="Detalle" value="{{ $producto->detalle }}">
                     </div>
-
-                    {{-- {{ $stock }} --}}
 
                     <label for="">Stock por talles</label><br>
                     <div class="">
@@ -134,8 +175,8 @@
                         <label for="">Hace click si queres modificar el Stock</label>
                         <input type="checkbox" class="modificarStock" name="modificarStock" value="si">
                     </div>
-                    
-                    <div class="form-group p-0 d-none tablaStock" style="width: 100%;">
+                    {{-- ojo que uso la posicion de d-none para validad por javascritp --}}
+                    <div class="d-none form-group p-0 tablaStock talles" style="width: 100%;">
                         <label class="d-block mb-3" for="">Tabla de stock y talles</label>
                 
                         <table class="table text-center table-borderless table-hover border">
@@ -166,23 +207,25 @@
                         </table>
                     </div>
 
-                    <div class="mb-3">
-                        <label class="d-block" for="">Colores</label>
-                        <small>Podes seleccionar hasta 4 colores</small>
-                    </div>
-                    <div class="row form-group">
-                        @foreach ($colores as $color)
-                                @php
-                                    $coloresIds = $producto->colores->pluck('id')->toArray();
-                                    $checked = (in_array($color->id, $coloresIds)) ? 'checked' : ''
-                                @endphp
-                            <div class="col-sm-1">
-                                <label for="{{ $color->nombre }}" class="m-auto"
-                                    style="border: black solid 1px; width: 16px; height: 16px; background-color: {{$color->nombre}};"></label>
-                                <input {{ $checked }} type="checkbox" style="margin-bottom: -10px;" name="colores[]" value="{{ $color->id }}"
-                                    id="{{ $color->nombre }}">
-                            </div>
-                        @endforeach
+                    <div class="colors">
+                        <div class="mb-3">
+                            <label class="d-block" for="">Colores</label>
+                            <small>Podes seleccionar hasta 4 colores</small>
+                        </div>
+                        <div class="row form-group">
+                            @foreach ($colores as $color)
+                                    @php
+                                        $coloresIds = $producto->colores->pluck('id')->toArray();
+                                        $checked = (in_array($color->id, $coloresIds)) ? 'checked' : ''
+                                    @endphp
+                                <div class="col-sm-1">
+                                    <label for="{{ $color->nombre }}" class="m-auto"
+                                        style="border: black solid 1px; width: 16px; height: 16px; background-color: {{$color->nombre}};"></label>
+                                    <input {{ $checked }} type="checkbox" style="margin-bottom: -10px;" name="colores[]" value="{{ $color->id }}"
+                                        id="{{ $color->nombre }}">
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                 
                     <div class="form-group">

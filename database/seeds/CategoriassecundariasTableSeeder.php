@@ -26,7 +26,7 @@ class CategoriassecundariasTableSeeder extends Seeder
 
                 ['nombre' => 'Polleras'],
 
-                ['nombre' => 'shorts'],
+                ['nombre' => 'Shorts'],
 
                 ['nombre' => 'Bodys'],
 

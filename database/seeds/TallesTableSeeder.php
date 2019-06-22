@@ -14,6 +14,8 @@ class TallesTableSeeder extends Seeder
     {
         DB::table('talles')->insert(
             [
+                ['nombre' => 'UNICO'],
+
                 ['nombre' => 'XXS'],
 
                 ['nombre' => 'XS'],

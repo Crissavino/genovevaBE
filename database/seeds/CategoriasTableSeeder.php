@@ -28,7 +28,15 @@ class CategoriasTableSeeder extends Seeder
 
                 ['nombre' => 'Camperas'],
 
-                ['nombre' => 'Accesorios']
+                ['nombre' => 'Accesorios'],
+                
+                ['nombre' => 'Tops'],
+                
+                ['nombre' => 'Blusas'],
+                
+                ['nombre' => 'Monos'],
+                
+                ['nombre' => 'Musculosas']
             ]
         );
     }

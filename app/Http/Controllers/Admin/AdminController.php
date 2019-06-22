@@ -49,7 +49,7 @@ class AdminController extends Controller
         request()->validate(
             [
                 'titulo' => 'required | min:3 | max:30',
-                'categoria_id' => 'required | numeric | min:1',
+                'categoria_id' => 'required | numeric | min:1 | max:12',
                 'nuevo' => 'required',
                 'popular' => 'required',
                 'categoriasSecundarias' => 'required | array | min:1 | max:3',
@@ -363,13 +363,13 @@ class AdminController extends Controller
 
         $producto->colores()->detach();
 
-        $producto->imagenesshops()->detach();
+        $producto->imagenesshops()->delete();
 
-        $producto->imagenesdetalles()->detach();
+        $producto->imagenesdetalles()->delete();
 
         $producto->talles()->detach();
 
-        $producto->stocks()->detach();
+        $producto->stocks()->delete();
         
         $producto->delete();
 

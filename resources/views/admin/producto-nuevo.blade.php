@@ -25,7 +25,6 @@
                     </ul>
                     
                 </div>
-                {{-- con js le agrego una clase que tenga el borde rojo a los campos con error --}}
             @endif
     
             <div class="row animated fadeIn fast">
@@ -49,71 +48,69 @@
                             </select>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group esNuevo">
                             <label class="d-block" for="">Es un producto nuevo?</label>
                             <small class="d-block">Aparecerá una etiqueta arriba del producto que dice NEW</small>
                             <div class="d-inline-block mr-3">
                                 <label for="">Sí</label>
-                                <input type="checkbox" name="nuevo" id="" value="1">
+                                <input type="checkbox" name="nuevo" id="nuevoSi" value="1">
                             </div>
                             <div class="d-inline-block">
                                 <label for="">No</label>
-                                <input type="checkbox" name="nuevo" id="" value="0">
+                                <input type="checkbox" name="nuevo" id="nuevoNo" value="0">
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group esPopular">
                             <label class="d-block" for="">Queres destacar el producto?</label>
                             <small class="d-block">Aparecerá en el home como Producto Popular</small>
                             <div class="d-inline-block mr-3">
                                 <label for="">Sí</label>
-                                <input type="checkbox" name="popular" id="" value="1">
+                                <input type="checkbox" name="popular" id="popularSi" value="1">
                             </div>
                             <div class="d-inline-block">
                                 <label for="">No</label>
-                                <input type="checkbox" name="popular" id="" value="0">
+                                <input type="checkbox" name="popular" id="popularNo" value="0">
                             </div>
-                        </div>
-    
-                        <div class="mb-3">
-                            <label class="d-block" for="">Categoria secundaria</label>
-                            <small>Podes seleccionar hasta 3</small>
-                        </div>
-                        <div class="row form-group">
-                            @foreach ($categoriasSecundarias as $categoria)
-                            <div class="colo-3 col-sm-3">
-                                <label class="mr-1" for="{{ $categoria->id }}">{{ $categoria->nombre }}</label>
-                                <input type="checkbox" name="categoriasSecundarias[]" value="{{ $categoria->id }}" id="{{ $categoria->id }}">
-                            </div>
-                            @endforeach
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="d-block for="">Imagenes que se verán en el shop</label>
-                            <small>Tenes que seleccionar dos</small>
-                        </div>
-                        <div class="form-group custom-file mb-4">
-                            <label for="" class="custom-file-label imagenShop">Click para agregar</label>
-                            <input class="custom-file-input imagenShop-input" type="file" lang="es" name="imagenShop[]"
-                                multiple>
-                                {{-- <div style="display:inline-block; margin: 10px; width: 100px; height: 200px;">
-                                    <img style="display:block;" src="" id="imagenShop-preview" width="100px;">
-                                </div> --}}
-                                {{-- <div class="invalid-feedback"></div> --}}
                         </div>
                         
-                        <div class="mb-3">
-                            <label class="d-block for="">Imagenes que se verán en la descripcion del producto</label>
-                            <small>Podes seleccionar hasta 5</small>
+                        <div class="catSecundarias">
+                            <div class="mb-3">
+                                <label class="d-block" for="">Categoria secundaria</label>
+                                <small>Podes seleccionar hasta 3</small>
+                            </div>
+                            <div class="row form-group">
+                                @foreach ($categoriasSecundarias as $categoria)
+                                <div class="colo-3 col-sm-3">
+                                    <label class="mr-1" for="{{ $categoria->id }}">{{ $categoria->nombre }}</label>
+                                    <input type="checkbox" name="categoriasSecundarias[]" value="{{ $categoria->id }}" id="{{ $categoria->id }}">
+                                </div>
+                                @endforeach
+                            </div>
                         </div>
-                        <div class="form-group custom-file mb-4">
-                            <label for="" class="custom-file-label imagenDetalle">Click para agregar</label>
-                            <input class="custom-file-input imagenDetalle-input" type="file" lang="es"
-                                name="imagenDetalle[]" multiple>
-                            {{-- <div style="display:inline-block; margin: 10px; width: 100px; height: 200px;">
-                                    <img style="display:block;" src="" id="imagenShop-preview" width="100px;">
-                                </div> --}}
-                            {{-- <div class="invalid-feedback"></div> --}}
+
+                        <div class="imagenShopDiv">
+                            <div class="mb-3">
+                                <label class="d-block for="">Imagenes que se verán en el shop</label>
+                                <small>Tenes que seleccionar dos</small>
+                            </div>
+                            <div class="form-group custom-file mb-4">
+                                <label for="" class="custom-file-label imagenShop">Click para agregar</label>
+                                <input class="custom-file-input imagenShop-input" type="file" lang="es" name="imagenShop[]"
+                                    multiple>
+                            </div>
+                        </div>
+                        
+                        <div class="imagenDetalleDiv">
+                            <div class="mb-3">
+                                <label class="d-block for="">Imagenes que se verán en la descripcion del producto</label>
+                                <small>Podes seleccionar hasta 5</small>
+                            </div>
+                            <div class="form-group custom-file mb-4">
+                                <label for="" class="custom-file-label imagenDetalle">Click para agregar</label>
+                                <input class="custom-file-input imagenDetalle-input" type="file" lang="es"
+                                    name="imagenDetalle[]" multiple>
+                            </div>
                         </div>
     
                         <div class="form-group mb-5">
@@ -121,7 +118,7 @@
                             <input type="text" name="detalle" class="form-control" placeholder="Detalle" value="{{old('detalle')}}">
                         </div>
 
-                        <div class="form-group p-0" style="width: 100%;">
+                        <div class="form-group p-0 talles" style="width: 100%;">
                             <label class="d-block mb-3" for="">Tabla de stock y talles</label>
 
                             <table class="table text-center table-borderless table-hover border"">
@@ -152,17 +149,22 @@
                             </table>
                             
                         </div>
-                        <div class="mb-3">
-                            <label class="d-block" for="">Colores</label>
-                            <small>Podes seleccionar hasta 4 colores</small>
-                        </div>
-                        <div class="row form-group">
-                            @foreach ($colores as $color)
+
+                        <div class="colors">
+                            <div class="mb-3">
+                                <label class="d-block" for="">Colores</label>
+                                <small>Podes seleccionar hasta 4 colores</small>
+                            </div>
+                            <div class="row form-group">
+                                @foreach ($colores as $color)
                                 <div class="col-sm-1">
-                                    <label for="{{ $color->nombre }}" class="m-auto" style="border: black solid 1px; width: 16px; height: 16px; background-color: {{$color->nombre}};"></label>
-                                    <input type="checkbox" style="margin-bottom: -10px;" name="colores[]" value="{{ $color->id }}" id="{{ $color->nombre }}">
+                                    <label for="{{ $color->nombre }}" class="m-auto"
+                                        style="border: black solid 1px; width: 16px; height: 16px; background-color: {{$color->nombre}};"></label>
+                                    <input type="checkbox" style="margin-bottom: -10px;" name="colores[]" value="{{ $color->id }}"
+                                        id="{{ $color->nombre }}">
                                 </div>
-                            @endforeach
+                                @endforeach
+                            </div>
                         </div>
 
                         <div class="form-group">

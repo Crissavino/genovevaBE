@@ -34,12 +34,12 @@
                         @csrf 
                         @method('POST')
                         <div class="form-group">
-                            <label for="">Titulo</label>
+                            <label for="">Titulo</label> <span style="color:red">*</span>
                             <input type="text" name="titulo" class="form-control" placeholder="Título del producto" value="{{old('titulo')}}">
                         </div>
     
                         <div class="form-group">
-                            <label for="">Categoria Principal</label>
+                            <label for="">Categoria Principal</label> <span style="color:red">*</span>
                             <select name="categoria_id" class="form-control">
                                 <option value="0">Seleccioná la categoria principal</option>
                                 @foreach ($categoriasPrincipales as $categoria)
@@ -49,7 +49,7 @@
                         </div>
 
                         <div class="form-group esNuevo">
-                            <label class="d-block" for="">Es un producto nuevo?</label>
+                            <label class="d-block" for="">Es un producto nuevo? <span style="color:red">*</span></label>
                             <small class="d-block">Aparecerá una etiqueta arriba del producto que dice NEW</small>
                             <div class="d-inline-block mr-3">
                                 <label for="">Sí</label>
@@ -62,7 +62,7 @@
                         </div>
 
                         <div class="form-group esPopular">
-                            <label class="d-block" for="">Queres destacar el producto?</label>
+                            <label class="d-block" for="">Queres destacar el producto? <span style="color:red">*</span></label>
                             <small class="d-block">Aparecerá en el home como Producto Popular</small>
                             <div class="d-inline-block mr-3">
                                 <label for="">Sí</label>
@@ -76,7 +76,7 @@
                         
                         <div class="catSecundarias">
                             <div class="mb-3">
-                                <label class="d-block" for="">Categoria secundaria</label>
+                                <label class="d-block" for="">Categoria secundaria <span style="color:red">*</span></label>
                                 <small>Podes seleccionar hasta 3</small>
                             </div>
                             <div class="row form-group">
@@ -91,7 +91,7 @@
 
                         <div class="imagenShopDiv">
                             <div class="mb-3">
-                                <label class="d-block for="">Imagenes que se verán en el shop</label>
+                                <label class="d-block for="">Imagenes que se verán en el shop <span style="color:red">*</span></label>
                                 <small>Tenes que seleccionar dos</small>
                             </div>
                             <div class="form-group custom-file mb-4">
@@ -103,7 +103,7 @@
                         
                         <div class="imagenDetalleDiv">
                             <div class="mb-3">
-                                <label class="d-block for="">Imagenes que se verán en la descripcion del producto</label>
+                                <label class="d-block for="">Imagenes que se verán en la descripcion del producto <span style="color:red">*</span></label>
                                 <small>Podes seleccionar hasta 5</small>
                             </div>
                             <div class="form-group custom-file mb-4">
@@ -114,12 +114,12 @@
                         </div>
     
                         <div class="form-group mb-5">
-                            <label for="">Detalle</label>
+                            <label for="">Detalle</label> <span style="color:red">*</span>
                             <input type="text" name="detalle" class="form-control" placeholder="Detalle" value="{{old('detalle')}}">
                         </div>
 
                         <div class="form-group p-0 talles" style="width: 100%;">
-                            <label class="d-block mb-3" for="">Tabla de stock y talles</label>
+                            <label class="d-block mb-3" for="">Tabla de stock y talles <span style="color:red">*</span></label>
 
                             <table class="table text-center table-borderless table-hover border"">
                                 <thead class="thead-light">
@@ -152,7 +152,7 @@
 
                         <div class="colors">
                             <div class="mb-3">
-                                <label class="d-block" for="">Colores</label>
+                                <label class="d-block" for="">Colores <span style="color:red">*</span></label>
                                 <small>Podes seleccionar hasta 4 colores</small>
                             </div>
                             <div class="row form-group">
@@ -168,12 +168,12 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="">Descripción</label>
+                            <label for="">Descripción</label> <span style="color:red">*</span>
                             <textarea name="descripcion" cols="30" rows="10" class="form-control" ></textarea>
                         </div>
     
                         <div class="form-group">
-                            <label for="">Precio</label>
+                            <label for="">Precio</label> <span style="color:red">*</span>
                             <input type="number" name="precio" class="form-control" placeholder="Precio" value="{{old('precio')}}">
                         </div>
     

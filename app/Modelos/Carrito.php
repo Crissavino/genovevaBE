@@ -3,10 +3,12 @@
 namespace App\Modelos;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Carrito extends Model
 {
-    protected $fillable = ['producto_id', 'user_id', 'cantidad', 'talle'];
+    use SoftDeletes;
+    protected $fillable = ['id', 'producto_id', 'user_id', 'cantidad', 'talle'];
 
     public function ordene()
     {

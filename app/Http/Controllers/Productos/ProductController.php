@@ -94,16 +94,24 @@ class ProductController extends Controller
 
     public function guardarCarrito(Request $request){
 
-        $data = [
-            'producto_id' => $request->productId, 
-            'user_id' => $request->userId, 
+        $datos = [
+            'id' => $request->id,
+            'producto_id' => $request->productId,
+            'user_id' => $request->userId,
             'cantidad' => $request->cantidad,
             'talle' => $request->talle
         ];
 
-        // $carrito = \App\Modelos\Carrito::create($data);
+        $carrito = \App\Modelos\Carrito::create($datos);
 
-        return \App\Modelos\Carrito::create($data);
+        $message = 'El carrito se guardo correctamente';
+
+        $response = Response::json([
+            'message'=> $message,
+            'data' => $carrito,
+        ], 201);
+
+        return $response;
 
     }
 

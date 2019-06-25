@@ -131,4 +131,39 @@ class ProductController extends Controller
 
     }
 
+    public function guardarProductoFavorito(Request $request) {
+        $datos = [
+            'id' => $request->id,
+            'producto_id' => $request->productId,
+            'user_id' => $request->userId,
+        ];
+
+        $favorito = \App\Modelos\Favorito::create($datos);
+
+        $message = 'El producto favorito se guardo correctamente';
+
+        $response = Response::json([
+            'message'=> $message,
+            'data' => $favorito,
+        ], 201);
+
+        return $response;
+    }
+
+    public function deleteFavorito($id){
+
+        \App\Modelos\Favorito::find($id)->delete();
+
+    }
+
+    public function getProductosFavoritos($userId) {
+
+        $favoritos = \App\Modelos\Favorito::WHERE('user_id', '=', $userId)->get();
+
+        $response = Response::json($favoritos, 200);
+
+        return $response;
+
+    }
+
 }

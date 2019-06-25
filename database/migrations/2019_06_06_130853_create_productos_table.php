@@ -153,7 +153,7 @@ class CreateProductosTable extends Migration
         // });
 
         Schema::create('carritos', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->string('id');
             $table->integer('user_id')->unsigned();
             $table->integer('producto_id')->unsigned();
             $table->integer('cantidad');
@@ -174,6 +174,14 @@ class CreateProductosTable extends Migration
             $table->bigIncrements('id');
             $table->integer('carrito_id')->unsigned();
             $table->integer('ordene_id')->unsigned();
+            $table->softDeletesTz();
+            $table->timestampsTz();
+        });
+
+        Schema::create('favoritos', function (Blueprint $table) {
+            $table->string('id');
+            $table->integer('user_id')->unsigned();
+            $table->integer('producto_id')->unsigned();
             $table->softDeletesTz();
             $table->timestampsTz();
         });

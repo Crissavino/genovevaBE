@@ -46,6 +46,10 @@ Route::post('/guardarCarrito', 'Productos\ProductController@guardarCarrito')->mi
 Route::get('/getCarrito/{userId}', 'Productos\ProductController@getCarrito')->middleware('cors');
 Route::delete('/deleteCarrito/{userId}', 'Productos\ProductController@deleteCarrito')->middleware('cors');
 
+// favoritos
+Route::post('/guardarProductoFavorito', 'Productos\ProductController@guardarProductoFavorito')->middleware('cors');
+Route::get('/getProductosFavoritos/{userId}', 'Productos\ProductController@getProductosFavoritos')->middleware('cors');
+Route::delete('/deleteFavorito/{prodFavoritoId}', 'Productos\ProductController@deleteFavorito')->middleware('cors');
 
 
 

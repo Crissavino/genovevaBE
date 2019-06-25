@@ -53,5 +53,6 @@ Route::post('/guardarProductoFavorito', 'Productos\ProductController@guardarProd
 Route::get('/getProductosFavoritos/{userId}', 'Productos\ProductController@getProductosFavoritos')->middleware('cors');
 Route::delete('/deleteFavorito/{prodFavoritoId}', 'Productos\ProductController@deleteFavorito')->middleware('cors');
 
-
+// pedidos
+Route::post('/realizarPedido', 'PedidoController@realizarPedido')->middleware('cors');
 

@@ -156,6 +156,7 @@ class CreateProductosTable extends Migration
             $table->string('id');
             $table->integer('user_id')->unsigned();
             $table->integer('producto_id')->unsigned();
+            $table->integer('ordene_id')->unsigned();
             $table->integer('cantidad');
             $table->string('talle');
             $table->softDeletesTz();
@@ -165,6 +166,7 @@ class CreateProductosTable extends Migration
         Schema::create('ordenes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id')->unsigned();
+            $table->integer('envio_id')->unsigned();
             $table->integer('numOrden');
             $table->softDeletesTz();
             $table->timestampsTz();
@@ -182,6 +184,24 @@ class CreateProductosTable extends Migration
             $table->string('id');
             $table->integer('user_id')->unsigned();
             $table->integer('producto_id')->unsigned();
+            $table->softDeletesTz();
+            $table->timestampsTz();
+        });
+
+        Schema::create('envios', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->integer('user_id')->unsigned();
+            $table->integer('ordene_id')->unsigned();
+            $table->string('name');
+            $table->string('lastname');
+            $table->string('pais_id');
+            $table->string('direccion1');
+            $table->string('direccion2')->nullable();
+            $table->string('cp');
+            $table->string('provincia');
+            $table->string('ciudad');
+            $table->bigInteger('telefono');
+            $table->string('email');
             $table->softDeletesTz();
             $table->timestampsTz();
         });
@@ -213,5 +233,6 @@ class CreateProductosTable extends Migration
         Schema::dropIfExists('ordenes');
         Schema::dropIfExists('carrito_ordene');
         Schema::dropIfExists('favoritos');
+        Schema::dropIfExists('envios');
     }
 }

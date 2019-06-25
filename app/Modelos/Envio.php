@@ -5,14 +5,13 @@ namespace App\Modelos;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Carrito extends Model
+class Envio extends Model
 {
     use SoftDeletes;
-    protected $fillable = ['id', 'producto_id', 'user_id', 'ordene_id', 'cantidad', 'talle'];
+    protected $fillable = ['user_id', 'ordene_id', 'name', 'lastname', 'pais_id', 'direccion1', 'direccion2', 'cp', 'provincia', 'ciudad', 'telefono', 'email'];
 
     public function ordene()
     {
         return $this->belongsTo('App\Modelos\Ordenes');
     }
-    
 }

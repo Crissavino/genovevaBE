@@ -212,5 +212,6 @@ class CreateProductosTable extends Migration
         Schema::dropIfExists('carritos');
         Schema::dropIfExists('ordenes');
         Schema::dropIfExists('carrito_ordene');
+        Schema::dropIfExists('favoritos');
     }
 }

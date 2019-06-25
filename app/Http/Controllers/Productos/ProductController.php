@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Productos;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -39,9 +40,20 @@ class ProductController extends Controller
 
     public function getImagenesShop(){
         
+        // $imagenesShop = DB::table('aformularios')->all();
+
         $imagenesShop = \App\Modelos\Imagenesshop::all();
 
         $response = Response::json($imagenesShop, 200);
+
+        return $response;
+    }
+
+    public function getRelColores(){
+        
+        $relColores = DB::table('colore_producto')->get();
+
+        $response = Response::json($relColores, 200);
 
         return $response;
     }

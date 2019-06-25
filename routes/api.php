@@ -29,6 +29,8 @@ Route::get('/datos', 'Productos\ProductController@getDatos')->middleware('cors')
 
 Route::get('/imagenesShop', 'Productos\ProductController@getImagenesShop')->middleware('cors');
 
+Route::get('/relcolores', 'Productos\ProductController@getRelColores')->middleware('cors');
+
 Route::get('/imagenesDetalle', 'Productos\ProductController@getImagenesDetalle')->middleware('cors');
 // Route::get('/imagenesDetalle/{id}', 'Productos\ProductController@getImagenesDetalle')->middleware('cors');
 

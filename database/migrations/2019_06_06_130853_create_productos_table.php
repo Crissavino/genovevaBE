@@ -153,7 +153,7 @@ class CreateProductosTable extends Migration
         // });
 
         Schema::create('carritos', function (Blueprint $table) {
-            $table->string('id');
+            $table->bigInteger('id');
             $table->integer('user_id')->unsigned();
             $table->integer('producto_id')->unsigned();
             $table->integer('ordene_id')->unsigned();

@@ -36,15 +36,13 @@ class AdminController extends Controller
         $stocks = \App\Modelos\Stock::all();
         $talles = \App\Modelos\Talle::all();
 
-        $carritos = \App\Modelos\Carrito::WHERE('user_id', '=', 1)->get();
+        $carritos = \App\Modelos\Carrito::all();
+
 
         foreach ($carritos as $carrito) {
-            var_dump('<pre>');
-            var_dump($carrito);
-            // $carrito->update(['ordene_id' => $orden->id]);
+            var_dump($carrito->id);
         }
-
-        dd('chau');
+        dd($carritos);
 
         return view('admin.producto-nuevo', [
                                     'categoriasPrincipales' => $categoriasPrincipales,

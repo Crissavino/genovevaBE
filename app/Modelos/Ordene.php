@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Ordene extends Model
 {
     use SoftDeletes;
-    protected $fillable = ['numOrden', 'user_id', 'envio_id'];
+    protected $fillable = ['numOrden', 'user_id', 'envio_id', 'estadopago_id'];
 
     public function carritos()
     {

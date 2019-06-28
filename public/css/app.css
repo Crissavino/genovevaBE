@@ -4,6 +4,55 @@ body {
     font-family: "Montserrat", sans-serif !important;
 }
 
+.sobre {
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+}
+.sobre:hover .informacion-derecha {
+    visibility: visible;
+}
+
+.informacion-derecha {
+    visibility: hidden;
+    width: 300px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 10px 10px;
+    /* padding: 5px 0; */
+    border-radius: 6px;
+
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    top: -5px;
+    left: 105%;
+    z-index: 1;
+}
+
+.sobre:hover .informacion-abajo {
+    visibility: visible;
+}
+
+.informacion-abajo {
+    visibility: hidden;
+    width: 300px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 10px 10px;
+    /* padding: 5px 0; */
+    border-radius: 6px;
+
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    top: 105%;
+    right: -20%;
+    z-index: 1;
+}
+
+
+
 .sidenav {
     height: 100%;
     width: 0;

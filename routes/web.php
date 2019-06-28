@@ -26,3 +26,9 @@ Route::post('/admin/producto/nuevo', 'Admin\AdminController@insertProducto');
 Route::get('/admin/producto/{id?}', 'Admin\AdminController@editProducto');
 Route::put('/admin/producto/{id}', 'Admin\AdminController@updateProducto');
 Route::delete('/admin/producto/borrar/{id}', 'Admin\AdminController@destroyProducto');
+
+
+// ordenes
+Route::get('/admin/ordenes', 'Ordenes\OrdenesController@showOrdenes');
+
+

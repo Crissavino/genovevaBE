@@ -17,6 +17,7 @@ class PedidoController extends Controller
             'user_id' => $request->userId,
             'numOrden' => mt_rand(000000001, 999999999),
             'envio_id' => 0,
+            'estadopago_id' => 2,
         ];
 
         $orden = \App\Modelos\Ordene::create($datosOrden);
@@ -86,6 +87,7 @@ class PedidoController extends Controller
 
                 $payment = new MercadoPago\Payment();
                 $payment->transaction_amount = $request->total;
+                // $payment->notification_url = "direccion/donde/va/el/receptor/de/notificaciones --> recibirNotificacionMP()"; // url para la notifiacion del estado del pago e ir actualizandolo
                 $payment->description = $request->descripcion;
                 $payment->payment_method_id = $request->metodo;
                 $payment->payer = array(
@@ -110,6 +112,7 @@ class PedidoController extends Controller
 
                 $payment = new MercadoPago\Payment();
                 $payment->transaction_amount = $request->total;
+                // $payment->notification_url = "direccion/donde/va/el/receptor/de/notificaciones --> recibirNotificacionMP()"; // url para la notifiacion del estado del pago e ir actualizandolo
                 $payment->token = $request->token; // response.id de sdkResponseHandler
                 $payment->description = $request->description;
                 $payment->installments = $request->cuotas;
@@ -134,6 +137,7 @@ class PedidoController extends Controller
             //fin pagos con tarjeta
         }
 
+
         // $response = Response::json([
         //     'no entro' => 'no entro en ninguno',
         // ], 201);
@@ -157,4 +161,32 @@ class PedidoController extends Controller
 
     //     $payment_methods = MercadoPago\SDK::post("/merchant_orders", $infoOrden);
     // }
+
+    public function recibirNotificacionMP() {
+        // // para recibir notificaciones
+            // MercadoPago\SDK::setAccessToken("TEST-8447599831708568-062517-59dec1ad9697d89f066c24c7528a2fb8-447000507");
+
+            // curl -X GET \
+            //     'https://api.mercadopago.com/v1/payments/:id?access_token=ACCESS_TOKEN_ENV' 
+            // switch ($_POST["type"]) {
+            //     case "payment":
+            //         $payment = MercadoPago\SDK::Payment(find_by_id($_POST["id"]));
+            //         // $payment = MercadoPago\Payment.find_by_id($_POST["id"]);
+            //         break;
+            //     case "plan":
+            //         $plan = MercadoPago\SDK::Plan(find_by_id($_POST["id"]));
+            //         // $plan = MercadoPago\Plan.find_by_id($_POST["id"]);
+            //         break;
+            //     case "subscription":
+            //         $plan = MercadoPago\SDK::Subscription(find_by_id($_POST["id"]));
+            //         // $plan = MercadoPago\Subscription.find_by_id($_POST["id"]);
+            //         break;
+            //     case "invoice":
+            //         $plan = MercadoPago\SDK::Invoice(find_by_id($_POST["id"]));
+            //         // $plan = MercadoPago\Invoice.find_by_id($_POST["id"]);
+            //         break;
+            // }
+
+        // // fin recibir notificaciones
+    }
 }

@@ -36,14 +36,6 @@ class AdminController extends Controller
         $stocks = \App\Modelos\Stock::all();
         $talles = \App\Modelos\Talle::all();
 
-        $carritos = \App\Modelos\Carrito::all();
-
-
-        foreach ($carritos as $carrito) {
-            var_dump($carrito->id);
-        }
-        dd($carritos);
-
         return view('admin.producto-nuevo', [
                                     'categoriasPrincipales' => $categoriasPrincipales,
                                     'categoriasSecundarias' => $categoriasSecundarias,
@@ -253,8 +245,6 @@ class AdminController extends Controller
         }
 
         //guardo las imagenes del detalle en su tabla y relaciono
-
-        // dd(count($producto->imagenesdetalles), count($data['imagenDetalle']));
 
         if (isset($data['imagenDetalle'])) {
             if (count($data['imagenDetalle']) > count($producto->imagenesdetalles)) {

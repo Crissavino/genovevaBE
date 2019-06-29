@@ -30,5 +30,6 @@ Route::delete('/admin/producto/borrar/{id}', 'Admin\AdminController@destroyProdu
 
 // ordenes
 Route::get('/admin/ordenes', 'Ordenes\OrdenesController@showOrdenes');
+Route::put('/admin/ordenes/{id}', 'Ordenes\OrdenesController@updateOrden');
 
 

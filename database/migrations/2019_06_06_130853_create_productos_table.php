@@ -169,11 +169,19 @@ class CreateProductosTable extends Migration
             $table->integer('envio_id')->unsigned();
             $table->integer('numOrden');
             $table->integer('estadopago_id');
+            $table->integer('estadoenvio_id');
             $table->softDeletesTz();
             $table->timestampsTz();
         });
 
         Schema::create('estadopagos', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('nombre');
+            $table->softDeletesTz();
+            $table->timestampsTz();
+        });
+
+        Schema::create('estadoenvios', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre');
             $table->softDeletesTz();

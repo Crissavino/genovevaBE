@@ -18,6 +18,7 @@ class PedidoController extends Controller
             'numOrden' => mt_rand(000000001, 999999999),
             'envio_id' => 0,
             'estadopago_id' => 2,
+            'estadoenvio_id' => 1,
         ];
 
         $orden = \App\Modelos\Ordene::create($datosOrden);

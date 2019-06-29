@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('main')
-<div class="container">
+<div class="">
 
     <div class="row animated fadeIn fast">
         <div class="col-md-12 text-right mb-2">
@@ -15,18 +15,30 @@
 
     <table class="table table-hover table-borderless animated fadeIn fast">
         <thead class="thead-light">
-            <tr>
+            <tr scope="row">
+                <th class="text-center" scope="col"></th>
+                <th class="text-center" scope="col"></th>
+                <th class="text-center" scope="col"></th>
+                <th class="text-center" scope="col"></th>
+                <th class="text-center" scope="col" colspan="3">Envio</th>
+                <th class="text-center" scope="col"></th>
+            </tr>
+            <tr scope="row">
                 <th class="text-center" scope="col"># Orden</th>
                 <th class="text-center" scope="col">Nombre Usuario</th>
                 <th class="text-center" scope="col">Producto</th>
                 <th class="text-center" scope="col">Estado del Pago</th>
-                <th scope="col"></th>
+                <th class="text-center" scope="col">Dirección</th>
+                <th class="text-center" scope="col">Ciudad - Provincia - Pais</th>
+                <th class="text-center" scope="col">CP</th>
+                <th class="text-center" scope="col">Estado Envio</th>
+                {{-- <th scope="col"></th> --}}
             </tr>
         </thead>
         <tbody>
 
             @foreach ($ordenes as $orden)
-            <tr>
+            <tr scope="row">
                 <th>{{$orden->numOrden}}</th>
                 <td>
                     @foreach ($usuarios as $user)
@@ -72,27 +84,73 @@
                     </div>
                 </td>
                 <td>
-                    <select class="form-control" name="estadoPago" id="">
-                        <option value="">Estado</option>
-                        @foreach ($estadoPagos as $estado)
-                            @php
-                                $selected = ($estado->id == $orden->estadopago_id) ? 'selected' : '';
-                            @endphp
-                            <option value="{{$estado->id}}"  {{ $selected }}>{{$estado->nombre}}</option>                            
-                        @endforeach
-                    </select>
+                    <form action="/admin/ordenes/{{$orden->id}}" id="estadoPagoForm{{$orden->id}}" method="post">
+                        @csrf
+                        @method('PUT')
+                        <select class="form-control btn-outline-dark" name="estadoPago" id="estadoPago{{$orden->id}}">
+                            <option value="">Estado</option>
+                            @foreach ($estadoPagos as $estado)
+                                @php
+                                    $selected = ($estado->id == $orden->estadopago_id) ? 'selected' : '';
+                                @endphp
+                                <option value="{{$estado->id}}" {{ $selected }}>{{$estado->nombre}}</option>
+                            @endforeach
+                        </select>
+                        <button type="submit" class="d-none"></button>
+                        <script>
+                            document.querySelector('#estadoPago{{$orden->id}}').addEventListener('change', () => {
+                                document.querySelector('#estadoPagoForm{{$orden->id}}').submit();
+
+                            });
+                        </script>
+                    </form>
                 </td>
-                <td></td>
-                <td></td>
+                <td>
+                    @foreach ($envios as $envio)
+                        @if ($envio->ordene_id === $orden->id)
+                            {{$envio->direccion1}}
+                        @endif
+                    @endforeach
+                </td>
+                <td>
+                    @foreach ($envios as $envio)
+                        @if ($envio->ordene_id === $orden->id)
+                            {{$envio->ciudad}} - {{$envio->provincia}} - {{$envio->pais_id}}
+                        @endif
+                    @endforeach
+                </td>
+                <td>
+                    @foreach ($envios as $envio)
+                        @if ($envio->ordene_id === $orden->id)
+                            {{$envio->cp}}
+                        @endif
+                    @endforeach
+                </td>
+                <td>
+                    <form action="/admin/ordenes/{{$orden->id}}" id="estadoEnvioForm{{$orden->id}}" method="post">
+                        @csrf
+                        @method('PUT')
+                        <select class="form-control btn-outline-dark" name="estadoEnvio" id="estadoEnvio{{$orden->id}}">
+                            <option value="">Estado</option>
+                            @foreach ($estadoEnvios as $estado)
+                                @php
+                                    $selected = ($estado->id == $orden->estadoenvio_id) ? 'selected' : '';
+                                @endphp
+                                <option value="{{$estado->id}}" {{ $selected }}>{{$estado->nombre}}</option>
+                            @endforeach
+                        </select>
+                        <button type="submit" class="d-none"></button>
+                        <script>
+                            document.querySelector('#estadoEnvio{{$orden->id}}').addEventListener('change', () => {
+                                document.querySelector('#estadoEnvioForm{{$orden->id}}').submit();
+                            });
+                        </script>
+                    </form>
+                </td>
             </tr>    
             @endforeach
         </tbody>
     </table>
 </div>
-{{-- <script async>
-    $('.popover-dismiss').popover({
-        trigger: 'focus'
-    })
-</script> --}}
 @endsection
 

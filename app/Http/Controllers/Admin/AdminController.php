@@ -209,8 +209,6 @@ class AdminController extends Controller
     public function updateProducto($id){
         $data = request()->all();
 
-        dd($data);
-
         // agarro el producto a actualizar
         $producto = \App\Modelos\Producto::find($id);
 

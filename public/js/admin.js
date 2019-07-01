@@ -518,7 +518,8 @@
                     iTalle++;
                 }                
             });
-            if (talles.classList[0] !== 'd-none') {
+            
+            if (talles.classList[0] !== 'd-none' && talles.classList[4] !== 'd-none') {
                 if (iTalle === 0) {
                     event.preventDefault();
                     const alerta = document.createElement('span');

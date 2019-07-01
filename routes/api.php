@@ -57,3 +57,7 @@ Route::delete('/deleteFavorito/{prodFavoritoId}', 'Productos\ProductController@d
 Route::post('/realizarPedido', 'PedidoController@realizarPedido')->middleware('cors');
 Route::post('/pagarMP', 'PedidoController@pagarMP')->middleware('cors');
 Route::get('/obtenerMediosDePago', 'PedidoController@obtenerMediosDePago')->middleware('cors');
+
+// ordenes
+Route::get('/ordenes', 'Ordenes\OrdenesController@getOrdenes')->middleware('cors');
+

@@ -111,7 +111,8 @@ class ProductController extends Controller
             'producto_id' => $request->productId,
             'user_id' => $request->userId,
             'cantidad' => $request->cantidad,
-            'talle' => $request->talle
+            'talle' => $request->talle,
+            'ordene_id' => 0
         ];
 
         $carrito = \App\Modelos\Carrito::create($datos);

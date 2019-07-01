@@ -14,17 +14,18 @@ class PedidoController extends Controller
     public function realizarPedido(Request $request) 
     {
         $datosOrden = [
-            'user_id' => $request->userId,
+            'user_id' => $request->user_id,
+            // 'user_id' => $request->userId,
             'numOrden' => mt_rand(000000001, 999999999),
             'envio_id' => 0,
-            'estadopago_id' => 2,
+            'estadopago_id' => 4,
             'estadoenvio_id' => 1,
         ];
 
         $orden = \App\Modelos\Ordene::create($datosOrden);
 
         $datosEnvio = [
-            'user_id' => $request->userId,
+            'user_id' => $request->user_id,
             // 'ordene_id' => $request->ordene_id,
             'ordene_id' => $orden->id,
             'name' => $request->name,
@@ -43,7 +44,7 @@ class PedidoController extends Controller
 
         $orden->update(['envio_id' => $envio->id]);
 
-        $carritos = \App\Modelos\Carrito::WHERE('user_id', '=', $request->userId)->get();
+        $carritos = \App\Modelos\Carrito::WHERE('user_id', '=', $request->user_id)->WHERE('ordene_id', '=', 0)->get();
 
         foreach ($carritos as $carrito) {
             $carrito->update(['ordene_id' => $orden->id]);
@@ -54,6 +55,7 @@ class PedidoController extends Controller
         $response = Response::json([
             'message'=> $message,
             'datosEnvio' => $envio,
+            'datosOrden' => $orden,
         ], 201);
 
         return $response;

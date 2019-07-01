@@ -3,12 +3,6 @@
 @section('main')
 <div class="">
 
-    <div class="row animated fadeIn fast">
-        <div class="col-md-12 text-right mb-2">
-            <a href="/admin/producto/nuevo" class="btn btn-outline-success mb-3">Agregar producto nuevo</a>
-        </div>
-    </div>
-
     @if(Session::has('message'))
     <p class="alert alert-info">{{ Session::get('message') }}</p>
     @endif

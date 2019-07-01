@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Ordenes;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\DB;
 
 class OrdenesController extends Controller
 {
@@ -57,4 +59,14 @@ class OrdenesController extends Controller
         return redirect('/admin/ordenes');
 
     }
+
+    public function getOrdenes()
+    {
+        $ordenes = \App\Modelos\Ordene::all();
+
+        $response = Response::json($ordenes, 200);
+
+        return $response;
+    }
+
 }

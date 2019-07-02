@@ -83,9 +83,46 @@ class PedidoController extends Controller
             // test_user_4855076@testuser.com
             // qatest8496
         // fin usuario comprador
+// envio
+$shipments = new MercadoPago\Shipments();
+$shipments->mode = "me2";
+$shipments->dimensions = "30x30x30,500";
+$shipments->receiver_address = array(
+    "zip_code" => "5700",
+    "street_number" => 123,
+    "street_name" => "Street",
+    "floor" => 4,
+    "apartment" => "C",
+);
+// fin envio
 
         if ($request->metodo) {
-            // pago en efectivo
+            // // pago en efectivo funciona
+            //     MercadoPago\SDK::setAccessToken("TEST-8447599831708568-062517-59dec1ad9697d89f066c24c7528a2fb8-447000507");
+
+            //     $payment = new MercadoPago\Payment();
+            //     $payment->transaction_amount = $request->total;
+            //     // $payment->notification_url = "direccion/donde/va/el/receptor/de/notificaciones --> recibirNotificacionMP()"; // url para la notifiacion del estado del pago e ir actualizandolo
+            //     $payment->description = $request->descripcion;
+            //     $payment->payment_method_id = $request->metodo;
+            //     $payment->payer = array(
+            //         "email" => $request->email,
+            //     );
+                
+
+            //     $payment->save();
+
+            //     $response = Response::json([
+            //         'estado' => $payment->status,
+            //         'detalle' => $payment->status_detail,
+            //         'detalle de transaccion' => $payment->transaction_details,
+            //         'recursoExterno' => $payment->transaction_details->external_resource_url,
+            //         'referencia externa' => $payment->transaction_details->payment_method_reference_id,
+            //     ], 201);
+            // // fin pago en efectivo funciona
+
+            //pagon en efectivo con preference
+
                 MercadoPago\SDK::setAccessToken("TEST-8447599831708568-062517-59dec1ad9697d89f066c24c7528a2fb8-447000507");
 
                 $payment = new MercadoPago\Payment();
@@ -99,6 +136,27 @@ class PedidoController extends Controller
 
                 $payment->save();
 
+                $preference = new MercadoPago\Preference();
+
+                $shipments = new MercadoPago\Shipments();
+                $shipments->mode = "me2";
+                $shipments->dimensions = "20x30x30,800";
+                // $shipment->default_shipping_method = 73328;
+                // $shipments->free_methods = array(
+                //     array("id" => 73328),
+                // );
+                $shipments->receiver_address = array(
+                    "zip_code" => "1900",
+                    "street_number" => 1542,
+                    "street_name" => "135",
+                    // "floor" => 4,
+                    // "apartment" => "C",
+                );
+
+                $preference->shipments = $shipments;
+
+                $preference->save();
+
                 $response = Response::json([
                     'estado' => $payment->status,
                     'detalle' => $payment->status_detail,
@@ -106,7 +164,8 @@ class PedidoController extends Controller
                     'recursoExterno' => $payment->transaction_details->external_resource_url,
                     'referencia externa' => $payment->transaction_details->payment_method_reference_id,
                 ], 201);
-            // fin pago en efectivo
+                //fin paga en efectivo con preference
+
         }
 
         if ($request->emisorTarjeta) {
@@ -123,6 +182,19 @@ class PedidoController extends Controller
                 $payment->payer = array(
                     "email" => $request->email,
                 );
+
+                // envio
+                $shipments = new MercadoPago\Shipments();
+                $shipments->mode = "me2";
+                $shipments->dimensions = "30x30x30,500";
+                $shipments->receiver_address = array(
+                    "zip_code" => "5700",
+                    "street_number" => 123,
+                    "street_name" => "Street",
+                    "floor" => 4,
+                    "apartment" => "C",
+                );
+                // fin envio
 
                 // Save and posting the payment
                 $payment->save();

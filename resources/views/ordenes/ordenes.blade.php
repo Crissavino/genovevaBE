@@ -40,7 +40,21 @@
                             <div class="sobre">
                                 {{$user->name}} {{$user->lastname}}
                                 <span class="informacion-abajo btn-info">
-                                    {{$user->email}}
+                                    <ul class="list-group">
+                                        <li style="list-style:none;">
+                                            <a style="color: white;" href="mailto:{{$user->email}}">{{$user->email}}</a>
+                                        </li>
+                                        <li style="list-style:none;">
+                                            @foreach ($envios as $envio)
+                                                @if ($envio->user_id === $orden->user_id)
+                                                    <a style="color: white;" href="tel:+{{$envio->telefono}}">{{$envio->telefono}}</a>
+                                                    @php
+                                                        break;
+                                                    @endphp
+                                                @endif
+                                            @endforeach
+                                        </li>
+                                    </ul>
                                 </span>
                             </div>
                         @endif

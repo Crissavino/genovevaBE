@@ -116,7 +116,8 @@
                 <td>
                     @foreach ($envios as $envio)
                         @if ($envio->ordene_id === $orden->id)
-                            {{$envio->direccion1}}
+                            {{$envio->calle}} - {{$envio->numero}}
+                           
                         @endif
                     @endforeach
                 </td>

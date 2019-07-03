@@ -22,8 +22,8 @@ Route::get('/productosdestacados', 'Productos\ProductController@getProductosDest
 
 Route::get('/producto/{id}', 'Productos\ProductController@getProducto')->middleware('cors');
 
-// Route::get('/producto/{id}/stock', 'Productos\ProductController@getStockProducto')->middleware('cors');
-Route::get('/productos/stock', 'Productos\ProductController@getStockProducto')->middleware('cors');
+Route::get('/producto/{id}/stock', 'Productos\ProductController@getStockProducto')->middleware('cors');
+// Route::get('/productos/stock', 'Productos\ProductController@getStockProducto')->middleware('cors');
 
 Route::get('/datos', 'Productos\ProductController@getDatos')->middleware('cors');
 
@@ -57,6 +57,8 @@ Route::delete('/deleteFavorito/{prodFavoritoId}', 'Productos\ProductController@d
 Route::post('/realizarPedido', 'PedidoController@realizarPedido')->middleware('cors');
 Route::post('/pagarMP', 'PedidoController@pagarMP')->middleware('cors');
 Route::get('/obtenerMediosDePago', 'PedidoController@obtenerMediosDePago')->middleware('cors');
+Route::get('/calcularenvio/{dimensions}/{peso}/{zip_code}/{item_price}', 'PedidoController@getEnvio')->middleware('cors');
+
 
 // ordenes
 Route::get('/ordenes', 'Ordenes\OrdenesController@getOrdenes')->middleware('cors');

@@ -159,6 +159,7 @@ class CreateProductosTable extends Migration
             $table->integer('ordene_id')->unsigned();
             $table->integer('cantidad');
             $table->string('talle');
+            $table->integer('talle_id')->unsigned();
             $table->softDeletesTz();
             $table->timestampsTz();
         });
@@ -170,6 +171,7 @@ class CreateProductosTable extends Migration
             $table->integer('numOrden');
             $table->integer('estadopago_id');
             $table->integer('estadoenvio_id');
+            $table->integer('totalOrden');
             $table->softDeletesTz();
             $table->timestampsTz();
         });
@@ -211,8 +213,8 @@ class CreateProductosTable extends Migration
             $table->string('name');
             $table->string('lastname');
             $table->string('pais_id');
-            $table->string('direccion1');
-            $table->string('direccion2')->nullable();
+            $table->string('calle');
+            $table->integer('numero');
             $table->string('cp');
             $table->string('provincia');
             $table->string('ciudad');

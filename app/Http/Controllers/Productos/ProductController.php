@@ -93,11 +93,11 @@ class ProductController extends Controller
         return $response;
     }
 
-    public function getStockProducto(){
-    // public function getStockProducto($id){
+    // public function getStockProducto(){
+    public function getStockProducto($id){
         
-        // $stockProducto = \App\Modelos\Stock::WHERE('producto_id', '=', $id)->get();
-        $stockProducto = \App\Modelos\Stock::all();
+        $stockProducto = \App\Modelos\Stock::WHERE('producto_id', '=', $id)->get();
+        // $stockProducto = \App\Modelos\Stock::all();
 
         $response = Response::json($stockProducto, 200);
 
@@ -112,6 +112,7 @@ class ProductController extends Controller
             'user_id' => $request->userId,
             'cantidad' => $request->cantidad,
             'talle' => $request->talle,
+            'talle_id' => $request->talle_id,
             'ordene_id' => 0
         ];
 

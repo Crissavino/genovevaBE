@@ -15,28 +15,29 @@ class PedidoController extends Controller
     {
         $stocks = \App\Modelos\Stock::all();
 
-        $prodIds = $request->productosIds;
+        $prodsIdsTalles = $request->prods;
 
         foreach ($stocks as $stock) {
             $cantidadVenta = 0;
             $id = 0;
-            foreach ($prodIds as $idProducto) {
-                if ($stock->producto_id === $idProducto) {
+            foreach ($prodsIdsTalles as $prod) {
+                if ($stock->producto_id === $prod['id'] && $stock->talle_id === $prod['talle_id']) {
                     $cantidadVenta++;
-                    $id = $idProducto;
+                    $id = $prod['id'];
                 }
             }
-            if ($stock->cantidad < $cantidadVenta && $stock->producto_id === $idProducto) {
+            if ($stock->cantidad < $cantidadVenta && $stock->producto_id === $id) {
                 $message = 'No hay stock';
 
                 $response = Response::json([
                     'message' => $message,
-                    'noStock' => $idProducto,
+                    'noStock' => $id,
                 ], 201);
 
                 return $response;
             } else {
                 $nuevoCantidad = $stock->cantidad - $cantidadVenta;
+                $updateStock[] = ['id' => $id, 'stockId' => $stock->id, 'nuevaCantidad' => $nuevoCantidad];
                 $stock->update(['cantidad' => $nuevoCantidad]);
             }
         }
@@ -85,6 +86,8 @@ class PedidoController extends Controller
 
         $response = Response::json([
             'message'=> $message,
+            'prods' => $request->prods,
+            'updateStock'=> $updateStock,
             'datosEnvio' => $envio,
             'datosOrden' => $orden,
         ], 201);
@@ -167,7 +170,7 @@ class PedidoController extends Controller
                 $payment->save();
 
                 $preference = new MercadoPago\Preference();
-                $preference->items = array(
+                $preference->items = (object)array(
                     'title' => "Genoveva Shop Online",
                     'quantity' => 1,
                     'currency_id' => "ARS",
@@ -203,10 +206,11 @@ class PedidoController extends Controller
                     'detalle de transaccion' => $payment->transaction_details,
                     'recursoExterno' => $payment->transaction_details->external_resource_url,
                     'referencia externa' => $payment->transaction_details->payment_method_reference_id,
-                    'preference' => $preference,
-                    'preferenceId' => $preference->id,
-                    'preference1' => $preference->notification_url,
-                    'preference2' => $preference->init_point,
+                    'preference' => $preference->items,
+                    'preferenceId' => $preference->collector_id,
+                    'preference1' => $preference->client_id,
+                    'preference2' => $preference->sandbox_init_point,
+                    'preference2' => $preference->shipments,
                 ], 201);
 
                 // # Create a preference object
@@ -309,7 +313,7 @@ class PedidoController extends Controller
                 $payment->save();
 
                 $preference = new MercadoPago\Preference();
-                $preference->items = array(
+                $preference->items = (object)array(
                     'title' => "Genoveva Shop Online",
                     'quantity' => 1,
                     'currency_id' => "ARS",
@@ -347,7 +351,7 @@ class PedidoController extends Controller
                     'preference' => $preference,
                     'preferenceId' => $preference->id,
                     'preference1' => $preference->notification_url,
-                    'preference2' => $preference->init_point,
+                    'preference2' => $preference->shipments,
                 ], 201);
             //fin pagos con tarjeta
         }

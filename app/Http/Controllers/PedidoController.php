@@ -14,24 +14,35 @@ class PedidoController extends Controller
     public function realizarPedido(Request $request) 
     {
         $stocks = \App\Modelos\Stock::all();
+        $talles = \App\Modelos\Talle::all();
 
         $prodsIdsTalles = $request->prods;
 
         foreach ($stocks as $stock) {
             $cantidadVenta = 0;
             $id = 0;
+            $talleId = 0;
             foreach ($prodsIdsTalles as $prod) {
                 if ($stock->producto_id === $prod['id'] && $stock->talle_id === $prod['talle_id']) {
                     $cantidadVenta++;
                     $id = $prod['id'];
+                    $talleId = $prod['talle_id'];
                 }
             }
             if ($stock->cantidad < $cantidadVenta && $stock->producto_id === $id) {
                 $message = 'No hay stock';
 
+                foreach ($talles as $talle) {
+                    if ($talle->id === $talleId) {
+                        $talleAgotado = $talle->nombre;
+                    }
+                }
+
+
                 $response = Response::json([
                     'message' => $message,
                     'noStock' => $id,
+                    'talle' => $talleAgotado
                 ], 201);
 
                 return $response;

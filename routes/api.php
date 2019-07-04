@@ -34,6 +34,7 @@ Route::get('/relcolores', 'Productos\ProductController@getRelColores')->middlewa
 Route::get('/imagenesDetalle', 'Productos\ProductController@getImagenesDetalle')->middleware('cors');
 // Route::get('/imagenesDetalle/{id}', 'Productos\ProductController@getImagenesDetalle')->middleware('cors');
 
+Route::get('/usuarios', 'Controller@getUsuarios')->middleware('cors');
 Route::get('/usuario/{id}', 'Controller@getUsuario')->middleware('cors');
 
 // retuas login y registro
@@ -42,6 +43,7 @@ Route::get('/usuario/{id}', 'Controller@getUsuario')->middleware('cors');
 Route::post('/login', 'Auth\LoginController@authenticate')->middleware('cors');
 Route::post('/registro', 'Auth\RegisterController@registroAngular')->middleware('cors');
 Route::get('/logout', 'Auth\LoginController@logout')->middleware('cors');
+Route::post('/cambiarpass', 'Auth\RegisterController@cambiarPassAngular')->middleware('cors');
 
 // carrito
 Route::post('/guardarCarrito', 'Productos\ProductController@guardarCarrito')->middleware('cors');

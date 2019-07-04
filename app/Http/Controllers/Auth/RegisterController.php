@@ -55,6 +55,7 @@ class RegisterController extends Controller
             'lastname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'respuesta' => ['required', 'string', 'max:255'],
         ]);
     }
 
@@ -80,8 +81,24 @@ class RegisterController extends Controller
             'lastname' => $request->lastname,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'respuesta' => strtolower($request->respuesta),
         ]);
     }
 
+    protected function cambiarPassAngular(Request $request)
+    {
+        $user = \App\User::find($request->id);
+
+        $user->update(['password' => Hash::make($request->pass)]);
+
+        $message = 'Se cambio la contraseña';
+
+        $response = Response::json([
+            'message' => $message,
+            'user' => $user
+        ], 201);
+
+        return $response;
+    }
     
 }

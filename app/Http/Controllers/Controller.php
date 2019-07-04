@@ -23,4 +23,13 @@ class Controller extends BaseController
         return $response;
     }
 
+    public function getUsuarios()
+    {
+        $usuarios = \App\User::all();
+
+        $response = Response::json($usuarios, 200);
+
+        return $response;
+    }
+
 }

@@ -181,27 +181,59 @@ class PedidoController extends Controller
                 $payment->save();
 
                 $preference = new MercadoPago\Preference();
-                $preference->items = (object)array(
-                    'title' => "Genoveva Shop Online",
-                    'quantity' => 1,
-                    'currency_id' => "ARS",
-                    'unit_price' => $request->total
+                // $preference->items = (object)array(
+                //     'title' => "Genoveva Shop Online",
+                //     'quantity' => 1,
+                //     'currency_id' => "ARS",
+                //     'unit_price' => $request->total
 
-                );
-                $preference->payer = (object)array(
-                    'email' => $request->email
-                );
-                $preference->shipments = (object)array(
-                    'receiver_address' => (object)array(
+                // );
+
+                // ver nuevo item
+                    $item = new MercadoPago\Item();
+                    $item->title = "Genoveva Shop Online";
+                    $item->quantity = 1;
+                    $item->currency_id = "ARS";
+                    $item->unit_price = $request->total;
+
+                    $preference->items = array($item);
+                // fin
+                
+                // $preference->payer = (object)array(
+                //     'email' => $request->email
+                // );
+
+                // ver nuevo payer
+                    $payer = new MercadoPago\Payer();
+                    $payer->email = $request->email;
+                    $preference->payer = $payer;
+                // fin
+
+                // $preference->shipments = (object)array(
+                //     'receiver_address' => (object)array(
+                //         "zip_code" => $request->cp,
+                //         'state_name' => $request->provincia,
+                //         'city_name' => $request->ciudad,
+                //         "street_number" => $request->numero,
+                //         "street_name" => $request->calle
+                //     ),
+                //     'mode' => "me2",
+                //     'dimensions' => "30x30x20,800",
+                // );
+
+                // ver nuevo shipments
+                    $shipments = new MercadoPago\Shipments();
+                    $shipments->mode = 'me2';
+                    $shipments->dimensions = '30x30x30,800';
+                    $shipments->receiver_address = array(
                         "zip_code" => $request->cp,
                         'state_name' => $request->provincia,
                         'city_name' => $request->ciudad,
                         "street_number" => $request->numero,
                         "street_name" => $request->calle
-                    ),
-                    'mode' => "me2",
-                    'dimensions' => "30x30x20,800",
-                );
+                    );
+                    $preference->shipments = $shipments;
+                // fin
 
                 $preference->save();
 
@@ -217,11 +249,15 @@ class PedidoController extends Controller
                     'detalle de transaccion' => $payment->transaction_details,
                     'recursoExterno' => $payment->transaction_details->external_resource_url,
                     'referencia externa' => $payment->transaction_details->payment_method_reference_id,
-                    'preference' => $preference->items,
-                    'preferenceId' => $preference->collector_id,
-                    'preference1' => $preference->client_id,
-                    'preference2' => $preference->sandbox_init_point,
-                    'preference2' => $preference->shipments,
+                    'preferenceItem' => $preference->items,
+                    'preference' => $preference,
+                    'preferenceColId' => $preference->collector_id,
+                    'preferencePayer' => $preference->payer,
+                    'preferenceClId' => $preference->client_id,
+                    'preferenceId' => $preference->id,
+                    'preferenceId' => $preference->init_point,
+                    'preference1' => $preference->sandbox_init_point,
+                    'preference2' => $preference->shipments->receiver_address,
                 ], 201);
 
                 // # Create a preference object
@@ -324,27 +360,59 @@ class PedidoController extends Controller
                 $payment->save();
 
                 $preference = new MercadoPago\Preference();
-                $preference->items = (object)array(
-                    'title' => "Genoveva Shop Online",
-                    'quantity' => 1,
-                    'currency_id' => "ARS",
-                    'unit_price' => $request->total
+                // $preference->items = (object)array(
+                //     'title' => "Genoveva Shop Online",
+                //     'quantity' => 1,
+                //     'currency_id' => "ARS",
+                //     'unit_price' => $request->total
 
-                );
-                $preference->payer = (object)array(
-                    'email' => $request->email
-                );
-                $preference->shipments = (object)array(
-                    'receiver_address' => (object)array(
+                // );
+
+                // ver nuevo item
+                    $item = new MercadoPago\Item();
+                    $item->title = "Genoveva Shop Online";
+                    $item->quantity = 1;
+                    $item->currency_id = "ARS";
+                    $item->unit_price = $request->total;
+
+                    $preference->items = array($item);
+                // fin
+
+                // $preference->payer = (object)array(
+                //     'email' => $request->email
+                // );
+
+                // ver nuevo payer
+                    $payer = new MercadoPago\Payer();
+                    $payer->email = $request->email;
+                    $preference->payer = $payer;
+                // fin
+
+                // $preference->shipments = (object)array(
+                //     'receiver_address' => (object)array(
+                //         "zip_code" => $request->cp,
+                //         'state_name' => $request->provincia,
+                //         'city_name' => $request->ciudad,
+                //         "street_number" => $request->numero,
+                //         "street_name" => $request->calle
+                //     ),
+                //     'mode' => "me2",
+                //     'dimensions' => "30x30x20,800",
+                // );
+
+                // ver nuevo shipments
+                    $shipments = new MercadoPago\Shipments();
+                    $shipments->mode = 'me2';
+                    $shipments->dimensions = '30x30x30,800';
+                    $shipments->receiver_address = array(
                         "zip_code" => $request->cp,
                         'state_name' => $request->provincia,
                         'city_name' => $request->ciudad,
                         "street_number" => $request->numero,
                         "street_name" => $request->calle
-                    ),
-                    'mode' => "me2",
-                    'dimensions' => "30x30x20,800",
-                );
+                    );
+                    $preference->shipments = $shipments;
+                // fin
 
                 $preference->save();
                 //...
@@ -360,9 +428,14 @@ class PedidoController extends Controller
                     'payment_method_id' => $payment->payment_method_id,
                     'email' => $payment->payer->email,
                     'preference' => $preference,
+                    'preferenceColId' => $preference->collector_id,
+                    'preferencePayer' => $preference->payer,
+                    'preferenceClId' => $preference->client_id,
                     'preferenceId' => $preference->id,
+                    'preferenceId' => $preference->init_point,
                     'preference1' => $preference->notification_url,
                     'preference2' => $preference->shipments,
+                    'preferenceItem' => $preference->items,
                 ], 201);
             //fin pagos con tarjeta
         }

@@ -486,6 +486,9 @@ class PedidoController extends Controller
     public function obtenerMediosDePago(){
 
         MercadoPago\SDK::setAccessToken("TEST-8447599831708568-062517-59dec1ad9697d89f066c24c7528a2fb8-447000507");
+        // token de mariana
+        // MercadoPago\SDK::setAccessToken("APP_USR-4686291555401662-070523-2ca9693199daa9b3788d4cd304f02332-204957269");
+
 
         $payment_methods = MercadoPago\SDK::get("/v1/payment_methods");
 
@@ -531,8 +534,12 @@ class PedidoController extends Controller
     public function getEnvio($dimensions, $peso, $zip_code, $item_price)
     {
         MercadoPago\SDK::setClientId("8447599831708568");
+        // clien id de mariana
+        // MercadoPago\SDK::setClientId("4686291555401662");
 
         MercadoPago\SDK::setClientSecret("LoPu5tRluVz2kJMMhzdmQrSV7SV0kO14");
+        // client secret de mariana
+        // MercadoPago\SDK::setClientSecret("EPbHPDfmCOl6lTnKOmSbMMXKodEJeU7b");
 
         $params = [ 'url_query' => [ 'dimensions' => $dimensions.','.$peso , 'zip_code' => $zip_code, 'item_price' => $item_price]]; //opcional ] ];
 

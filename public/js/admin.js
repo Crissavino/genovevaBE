@@ -576,35 +576,35 @@
             }
         // fin validacion colores
 
-        let descripcion = document.querySelector('[name=descripcion]');
+        // let descripcion = document.querySelector('[name=descripcion]');
         // validacion descripcion
-            if (descripcion.value === '') {
-                event.preventDefault();
-                const alerta = document.createElement('span');
-                descripcion.focus();
-                alerta.classList.add('alert');
-                alerta.classList.add('alert-danger');
-                alerta.setAttribute('name', 'alerta-descripcion');
-                alerta.classList.add('d-block');
-                alerta.classList.add('mt-2');
-                alerta.innerText = 'Tenes que agregar una descripción';
-                descripcion.parentNode.appendChild(alerta);
-                corrijo(descripcion, 'alerta-descripcion');
-            }
+            // if (descripcion.value === '') {
+            //     event.preventDefault();
+            //     const alerta = document.createElement('span');
+            //     descripcion.focus();
+            //     alerta.classList.add('alert');
+            //     alerta.classList.add('alert-danger');
+            //     alerta.setAttribute('name', 'alerta-descripcion');
+            //     alerta.classList.add('d-block');
+            //     alerta.classList.add('mt-2');
+            //     alerta.innerText = 'Tenes que agregar una descripción';
+            //     descripcion.parentNode.appendChild(alerta);
+            //     corrijo(descripcion, 'alerta-descripcion');
+            // }
             
-            if (descripcion.value !== '' && descripcion.value.length < 20) {
-                event.preventDefault();
-                const alerta = document.createElement('span');
-                descripcion.focus();
-                alerta.classList.add('alert');
-                alerta.classList.add('alert-danger');
-                alerta.setAttribute('name', 'alerta-descripcion');
-                alerta.classList.add('d-block');
-                alerta.classList.add('mt-2');
-                alerta.innerText = 'La descripción debe tener como mínimo 20 letras';
-                descripcion.parentNode.appendChild(alerta);
-                corrijo(descripcion, 'alerta-descripcion');
-            } 
+            // if (descripcion.value !== '' && descripcion.value.length < 20) {
+            //     event.preventDefault();
+            //     const alerta = document.createElement('span');
+            //     descripcion.focus();
+            //     alerta.classList.add('alert');
+            //     alerta.classList.add('alert-danger');
+            //     alerta.setAttribute('name', 'alerta-descripcion');
+            //     alerta.classList.add('d-block');
+            //     alerta.classList.add('mt-2');
+            //     alerta.innerText = 'La descripción debe tener como mínimo 20 letras';
+            //     descripcion.parentNode.appendChild(alerta);
+            //     corrijo(descripcion, 'alerta-descripcion');
+            // } 
         // fin validacion descripcion
 
         let precio = document.querySelector('[name=precio]');

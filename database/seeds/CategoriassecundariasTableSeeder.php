@@ -38,7 +38,9 @@ class CategoriassecundariasTableSeeder extends Seeder
 
                 ['nombre' => 'Sacos'],
 
-                ['nombre' => 'Accesorios']
+                ['nombre' => 'Accesorios'],
+
+                ['nombre' => 'Sweater']
             ]
         );
 

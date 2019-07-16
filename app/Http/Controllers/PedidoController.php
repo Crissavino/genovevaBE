@@ -91,8 +91,6 @@ class PedidoController extends Controller
             $carrito->update(['ordene_id' => $orden->id]);
         }
 
-        
-
         $message = 'La información del envío se guardo correctamente';
 
         $response = Response::json([
@@ -158,32 +156,31 @@ class PedidoController extends Controller
         // fin
 
         if ($request->metodo) {
-            // // pago en efectivo funciona
-            //     MercadoPago\SDK::setAccessToken("TEST-8447599831708568-062517-59dec1ad9697d89f066c24c7528a2fb8-447000507");
+            // pago en efectivo funciona
+                //     MercadoPago\SDK::setAccessToken("TEST-8447599831708568-062517-59dec1ad9697d89f066c24c7528a2fb8-447000507");
 
-            //     $payment = new MercadoPago\Payment();
-            //     $payment->transaction_amount = $request->total;
-            //     // $payment->notification_url = "direccion/donde/va/el/receptor/de/notificaciones --> recibirNotificacionMP()"; // url para la notifiacion del estado del pago e ir actualizandolo
-            //     $payment->description = $request->descripcion;
-            //     $payment->payment_method_id = $request->metodo;
-            //     $payment->payer = array(
-            //         "email" => $request->email,
-            //     );
-                
+                //     $payment = new MercadoPago\Payment();
+                //     $payment->transaction_amount = $request->total;
+                //     // $payment->notification_url = "direccion/donde/va/el/receptor/de/notificaciones --> recibirNotificacionMP()"; // url para la notifiacion del estado del pago e ir actualizandolo
+                //     $payment->description = $request->descripcion;
+                //     $payment->payment_method_id = $request->metodo;
+                //     $payment->payer = array(
+                //         "email" => $request->email,
+                //     );
+                    
 
-            //     $payment->save();
+                //     $payment->save();
 
-            //     $response = Response::json([
-            //         'estado' => $payment->status,
-            //         'detalle' => $payment->status_detail,
-            //         'detalle de transaccion' => $payment->transaction_details,
-            //         'recursoExterno' => $payment->transaction_details->external_resource_url,
-            //         'referencia externa' => $payment->transaction_details->payment_method_reference_id,
-            //     ], 201);
-            // // fin pago en efectivo funciona
+                //     $response = Response::json([
+                //         'estado' => $payment->status,
+                //         'detalle' => $payment->status_detail,
+                //         'detalle de transaccion' => $payment->transaction_details,
+                //         'recursoExterno' => $payment->transaction_details->external_resource_url,
+                //         'referencia externa' => $payment->transaction_details->payment_method_reference_id,
+                //     ], 201);
+            // fin pago en efectivo funciona
 
             //pagon en efectivo con preference
-
                 // token test
                 // MercadoPago\SDK::setAccessToken("TEST-8447599831708568-062517-59dec1ad9697d89f066c24c7528a2fb8-447000507");
 
@@ -293,72 +290,6 @@ class PedidoController extends Controller
                     // 'preference1' => $preference->sandbox_init_point,
                     // 'preference2' => $preference->shipments->receiver_address,
                 ], 201);
-
-                // # Create a preference object
-                // $preference = new MercadoPago\Preference();
-                // # Create an item object
-                // $item = new MercadoPago\Item();
-                // $item->id = "1234";
-                // $item->title = "Lightweight Paper Table";
-                // $item->quantity = 3;
-                // $item->currency_id = "ARS";
-                // $item->unit_price = 55.41;
-                // # Create a payer object
-                // $payer = new MercadoPago\Payer();
-                // $payer->name = "Charles";
-                // $payer->surname = "Luevano";
-                // $payer->email = "charles@hotmail.com";
-                // $payer->date_created = "2018-06-02T12:58:41.425-04:00";
-                // $payer->phone = array(
-                //     "area_code" => "",
-                //     "number" => "949 128 866"
-                // );
-                // $payer->identification = array(
-                //     "type" => "DNI",
-                //     "number" => "12345678"
-                // );
-                // $payer->address = array(
-                //     "street_name" => "Cuesta Miguel Armendáriz",
-                //     "street_number" => 1004,
-                //     "zip_code" => "11020"
-                // );
-                // # creo el envio
-                // $shipments = new MercadoPago\Shipments();
-                // $shipments->mode = "me2";
-                // $shipments->dimensions = "30x30x30,500";
-                // $shipments->receiver_address = array(
-                //     "zip_code" => "5700",
-                //     "street_number" => 123,
-                //     "street_name" => "Street",
-                //     "floor" => 4,
-                //     "apartment" => "C",
-                // );
-
-                // # Setting preference properties
-                // $preference->back_urls = array(
-                //     'success' => 'localhost:4200/#/home',
-                //     'pending' => 'localhost:4200/#/shop',
-                //     'failure' => 'localhost:4200/#/shop/descuentos'
-                // );
-                // $preference->items = array($item);
-                // $preference->items = array(
-                //     'id' => '1234',
-                //     'title' => 'Lightweight Paper Table',
-                //     'quantity' => 3,
-                //     'currency_id' => 'ARS',
-                //     'unit_price' => 55.41
-                // );
-                // $preference->payer = $payer;
-                // $preference->payer = $payer;
-                // $preference->shipments = $shipments;
-                // # Save and posting preference
-                // $preference->save();
-
-
-                // $response = Response::json([
-                //     'preference' => $preference->items,
-                //     // 'backs' => $preference->back_urls
-                // ], 201);
                 //fin paga en efectivo con preference
 
         }
@@ -382,30 +313,11 @@ class PedidoController extends Controller
                 $payment->payer = array(
                     "email" => $request->email,
                 );
-                // envio
-                // $shipments = new MercadoPago\Shipments();
-                // $shipments->mode = "me2";
-                // $shipments->dimensions = "30x30x30,500";
-                // $shipments->receiver_address = array(
-                //     "zip_code" => "5700",
-                //     "street_number" => 123,
-                //     "street_name" => "Street",
-                //     "floor" => 4,
-                //     "apartment" => "C",
-                // );
-                // fin envio
 
                 // Save and posting the payment
                 $payment->save();
 
                 $preference = new MercadoPago\Preference();
-                // $preference->items = (object)array(
-                //     'title' => "Genoveva Shop Online",
-                //     'quantity' => 1,
-                //     'currency_id' => "ARS",
-                //     'unit_price' => $request->total
-
-                // );
 
                 // ver nuevo item
                     $item = new MercadoPago\Item();
@@ -417,27 +329,11 @@ class PedidoController extends Controller
                     $preference->items = array($item);
                 // fin
 
-                // $preference->payer = (object)array(
-                //     'email' => $request->email
-                // );
-
                 // ver nuevo payer
                     $payer = new MercadoPago\Payer();
                     $payer->email = $request->email;
                     $preference->payer = $payer;
                 // fin
-
-                // $preference->shipments = (object)array(
-                //     'receiver_address' => (object)array(
-                //         "zip_code" => $request->cp,
-                //         'state_name' => $request->provincia,
-                //         'city_name' => $request->ciudad,
-                //         "street_number" => $request->numero,
-                //         "street_name" => $request->calle
-                //     ),
-                //     'mode' => "me2",
-                //     'dimensions' => "30x30x20,800",
-                // );
 
                 // ver nuevo shipments
                     $shipments = new MercadoPago\Shipments();
@@ -454,7 +350,6 @@ class PedidoController extends Controller
                 // fin
 
                 $preference->save();
-                //...
                 // Print the payment status
                 $message = 'El pago se genero correctamente';
                 
@@ -485,9 +380,9 @@ class PedidoController extends Controller
 
     public function obtenerMediosDePago(){
 
-        MercadoPago\SDK::setAccessToken("TEST-8447599831708568-062517-59dec1ad9697d89f066c24c7528a2fb8-447000507");
+        // MercadoPago\SDK::setAccessToken("TEST-8447599831708568-062517-59dec1ad9697d89f066c24c7528a2fb8-447000507");
         // token de mariana
-        // MercadoPago\SDK::setAccessToken("APP_USR-4686291555401662-070523-2ca9693199daa9b3788d4cd304f02332-204957269");
+        MercadoPago\SDK::setAccessToken("APP_USR-4686291555401662-070523-2ca9693199daa9b3788d4cd304f02332-204957269");
 
 
         $payment_methods = MercadoPago\SDK::get("/v1/payment_methods");
@@ -533,13 +428,13 @@ class PedidoController extends Controller
 
     public function getEnvio($dimensions, $peso, $zip_code, $item_price)
     {
-        MercadoPago\SDK::setClientId("8447599831708568");
+        // MercadoPago\SDK::setClientId("8447599831708568");
         // clien id de mariana
-        // MercadoPago\SDK::setClientId("4686291555401662");
+        MercadoPago\SDK::setClientId("4686291555401662");
 
-        MercadoPago\SDK::setClientSecret("LoPu5tRluVz2kJMMhzdmQrSV7SV0kO14");
+        // MercadoPago\SDK::setClientSecret("LoPu5tRluVz2kJMMhzdmQrSV7SV0kO14");
         // client secret de mariana
-        // MercadoPago\SDK::setClientSecret("EPbHPDfmCOl6lTnKOmSbMMXKodEJeU7b");
+        MercadoPago\SDK::setClientSecret("EPbHPDfmCOl6lTnKOmSbMMXKodEJeU7b");
 
         $params = [ 'url_query' => [ 'dimensions' => $dimensions.','.$peso , 'zip_code' => $zip_code, 'item_price' => $item_price]]; //opcional ] ];
 

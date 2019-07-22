@@ -185,7 +185,7 @@ class PedidoController extends Controller
                 // MercadoPago\SDK::setAccessToken("TEST-8447599831708568-062517-59dec1ad9697d89f066c24c7528a2fb8-447000507");
 
                 // token mariana
-                MercadoPago\SDK::setPublicKey("APP_USR-e5f44d7a-86b1-429f-8fbd-6c9c231dfae9");
+                // MercadoPago\SDK::setPublicKey("APP_USR-e5f44d7a-86b1-429f-8fbd-6c9c231dfae9");
                 MercadoPago\SDK::setAccessToken("APP_USR-4686291555401662-070523-2ca9693199daa9b3788d4cd304f02332-204957269");
 
 
@@ -272,23 +272,23 @@ class PedidoController extends Controller
 
                 $response = Response::json([
                     'message' => $message,
-                    // 'payment' => $payment,
-                    // 'estado' => $payment->status,
-                    // 'detalle' => $payment->status_detail,
-                    // 'total' => $payment->transaction_amount,
-                    // 'envio' => $payment->additional_info,
-                    // 'detalle de transaccion' => $payment->transaction_details,
-                    // 'recursoExterno' => $payment->transaction_details->external_resource_url,
-                    // 'referencia externa' => $payment->transaction_details->payment_method_reference_id,
-                    // 'preferenceItem' => $preference->items,
-                    // 'preference' => $preference,
-                    // 'preferenceColId' => $preference->collector_id,
-                    // 'preferencePayer' => $preference->payer,
-                    // 'preferenceClId' => $preference->client_id,
-                    // 'preferenceId' => $preference->id,
-                    // 'preferenceId' => $preference->init_point,
-                    // 'preference1' => $preference->sandbox_init_point,
-                    // 'preference2' => $preference->shipments->receiver_address,
+                    'payment' => $payment,
+                    'estado' => $payment->status,
+                    'detalle' => $payment->status_detail,
+                    'total' => $payment->transaction_amount,
+                    'envio' => $payment->additional_info,
+                    'detalle de transaccion' => $payment->transaction_details,
+                    'recursoExterno' => $payment->transaction_details->external_resource_url,
+                    'referencia externa' => $payment->transaction_details->payment_method_reference_id,
+                    'preferenceItem' => $preference->items,
+                    'preference' => $preference,
+                    'preferenceColId' => $preference->collector_id,
+                    'preferencePayer' => $preference->payer,
+                    'preferenceClId' => $preference->client_id,
+                    'preferenceId' => $preference->id,
+                    'preferenceId' => $preference->init_point,
+                    'preference1' => $preference->sandbox_init_point,
+                    'preference2' => $preference->shipments->receiver_address,
                 ], 201);
                 //fin paga en efectivo con preference
 
@@ -300,7 +300,7 @@ class PedidoController extends Controller
                 // MercadoPago\SDK::setAccessToken("TEST-8447599831708568-062517-59dec1ad9697d89f066c24c7528a2fb8-447000507");
 
                 // token mariana
-                MercadoPago\SDK::setPublicKey("APP_USR-e5f44d7a-86b1-429f-8fbd-6c9c231dfae9");
+                // MercadoPago\SDK::setPublicKey("APP_USR-e5f44d7a-86b1-429f-8fbd-6c9c231dfae9");
                 MercadoPago\SDK::setAccessToken("APP_USR-4686291555401662-070523-2ca9693199daa9b3788d4cd304f02332-204957269");
 
                 $payment = new MercadoPago\Payment();
@@ -355,21 +355,21 @@ class PedidoController extends Controller
                 
                 $response = Response::json([
                     'message' => $message,
-                    // 'estado' => $payment->status,
-                    // 'detalle' => $payment->status_detail,
-                    // 'fecha' => $payment->date_approved,
-                    // 'id' => $payment->id,
-                    // 'payment_method_id' => $payment->payment_method_id,
-                    // 'email' => $payment->payer->email,
-                    // 'preference' => $preference,
-                    // 'preferenceColId' => $preference->collector_id,
-                    // 'preferencePayer' => $preference->payer,
-                    // 'preferenceClId' => $preference->client_id,
-                    // 'preferenceId' => $preference->id,
-                    // 'preferenceId' => $preference->init_point,
-                    // 'preference1' => $preference->notification_url,
-                    // 'preference2' => $preference->shipments,
-                    // 'preferenceItem' => $preference->items,
+                    'estado' => $payment->status,
+                    'detalle' => $payment->status_detail,
+                    'fecha' => $payment->date_approved,
+                    'id' => $payment->id,
+                    'payment_method_id' => $payment->payment_method_id,
+                    'email' => $payment->payer->email,
+                    'preference' => $preference,
+                    'preferenceColId' => $preference->collector_id,
+                    'preferencePayer' => $preference->payer,
+                    'preferenceClId' => $preference->client_id,
+                    'preferenceId' => $preference->id,
+                    'preferenceId' => $preference->init_point,
+                    'preference1' => $preference->notification_url,
+                    'preference2' => $preference->shipments,
+                    'preferenceItem' => $preference->items,
                 ], 201);
             //fin pagos con tarjeta
         }

@@ -461,8 +461,6 @@ class PedidoController extends Controller
         MercadoPago\SDK::setClientSecret("EPbHPDfmCOl6lTnKOmSbMMXKodEJeU7b");
 
         $params = [ 'url_query' => [ 'dimensions' => $dimensions.','.$peso , 'zip_code' => $zip_code, 'item_price' => $item_price]]; //opcional ] ];
-        $resp = Response::json($params, 200);
-        return $resp;
 
         $response = MercadoPago\SDK::get('/shipping_options', $params);
 

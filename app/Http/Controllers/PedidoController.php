@@ -127,6 +127,30 @@ class PedidoController extends Controller
         return $response;
     }
 
+    public function acomodarStock(Request $request)
+    {
+        $i = 0;
+
+        $idsTalles = $request->prods;
+        
+        foreach ($idsTalles as $producto) {
+            $i++;
+            $stock = \App\Modelos\Stock::WHERE('producto_id', '=', $producto["id"])->WHERE('talle_id', '=', $producto["talle_id"])->first();
+
+            $cantidadAcomodada = $stock->cantidad + 1;
+
+            $stock->update(["cantidad" => $cantidadAcomodada]);
+        }
+
+        $message = 'La cantidad volvio a su valor original';
+
+        return $response = Response::json([
+            'message'=> $message,
+            'data' => $request->prods,
+            'cantidad' => $i,
+        ], 201);
+    }
+
     public function pagarMP(Request $request)
     {
         // mi usuario

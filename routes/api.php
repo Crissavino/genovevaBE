@@ -12,7 +12,6 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -58,6 +57,7 @@ Route::delete('/deleteFavorito/{prodFavoritoId}', 'Productos\ProductController@d
 // pedidos
 Route::post('/realizarPedido', 'PedidoController@realizarPedido')->middleware('cors');
 Route::delete('/deletePedido/{idUser}', 'PedidoController@borrarPedido')->middleware('cors');
+Route::put('/acomodarStock', 'PedidoController@acomodarStock')->middleware('cors');
 Route::post('/pagarMP', 'PedidoController@pagarMP')->middleware('cors');
 Route::get('/obtenerMediosDePago', 'PedidoController@obtenerMediosDePago')->middleware('cors');
 Route::get('/calcularenvio/{dimensions}/{peso}/{zip_code}/{item_price}', 'PedidoController@getEnvio')->middleware('cors');

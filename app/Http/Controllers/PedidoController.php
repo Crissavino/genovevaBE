@@ -236,6 +236,8 @@ class PedidoController extends Controller
                 
                 $payment->save();
 
+                $response = Response::json(['payment' => $payment, 'metodo' => $request->metodo]);
+
                 $preference = new MercadoPago\Preference();
                 // $preference->items = (object)array(
                 //     'title' => "Genoveva Shop Online",

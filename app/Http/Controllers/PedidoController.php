@@ -215,6 +215,7 @@ class PedidoController extends Controller
 
                 $payment = new MercadoPago\Payment();
                 $payment->transaction_amount = $request->total;
+                $payment->installments = 1;
                 // $payment->notification_url = "direccion/donde/va/el/receptor/de/notificaciones --> recibirNotificacionMP()"; // url para la notifiacion del estado del pago e ir actualizandolo
                 $payment->description = $request->descripcion;
                 $payment->payment_method_id = $request->metodo;

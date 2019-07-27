@@ -384,7 +384,7 @@ class PedidoController extends Controller
                     'fecha' => $payment->date_approved,
                     'id' => $payment->id,
                     'payment_method_id' => $payment->payment_method_id,
-                    'email' => $payment->payer->email,
+                    // 'email' => $payment->payer->email,
                     'preference' => $preference,
                     'preferenceColId' => $preference->collector_id,
                     'preferencePayer' => $preference->payer,

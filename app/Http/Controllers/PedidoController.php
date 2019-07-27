@@ -380,7 +380,6 @@ class PedidoController extends Controller
                 
                 $response = Response::json([
                     'message' => $message,
-                    'payment' => $payment,
                     'estado' => $payment->status,
                     'detalle' => $payment->status_detail,
                     'fecha' => $payment->date_approved,

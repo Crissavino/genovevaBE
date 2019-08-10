@@ -172,6 +172,7 @@ class CreateProductosTable extends Migration
             $table->integer('estadopago_id');
             $table->integer('estadoenvio_id');
             $table->integer('totalOrden');
+            $table->string('numSeguimiento')->default('No asignado');
             $table->softDeletesTz();
             $table->timestampsTz();
         });

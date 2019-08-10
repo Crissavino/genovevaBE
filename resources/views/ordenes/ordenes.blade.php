@@ -16,6 +16,7 @@
                 <th class="text-center" scope="col"></th>
                 <th class="text-center" scope="col" colspan="3">Envio</th>
                 <th class="text-center" scope="col"></th>
+                <th class="text-center" scope="col"></th>
             </tr>
             <tr scope="row">
                 <th class="text-center" scope="col"># Orden</th>
@@ -26,6 +27,7 @@
                 <th class="text-center" scope="col">Ciudad - Provincia - Pais</th>
                 <th class="text-center" scope="col">CP</th>
                 <th class="text-center" scope="col">Estado Envio</th>
+                <th class="text-center" scope="col">Num seguimiento</th>
                 {{-- <th scope="col"></th> --}}
             </tr>
         </thead>
@@ -155,6 +157,24 @@
                             });
                         </script>
                     </form>
+                </td>
+                <td>
+                    @if ($orden->estadoenvio_id === 2)
+                    <form action="/admin/ordenes/{{$orden->id}}" id="numSeguimientoForm{{$orden->id}}" method="post">
+                        @csrf
+                        @method('PUT')
+                        <input type="text" class="form-control" id="numSeguimiento{{$orden->id}}" value="{{$orden->numSeguimiento}}" name="numSeguimiento" placeholder="Num seguimiento">
+                        <button type="submit" class="d-none"></button>
+                        {{-- <script>
+                            document.querySelector('#numSeguimientoForm{{$orden->id}}').addEventListener('keyup', function(event) {
+                                event.preventDefault();
+                                if (event.keyCode === 13) {
+                                    console.log('enter');
+                                }
+                            });
+                        </script> --}}
+                    </form>
+                    @endif
                 </td>
             </tr>    
             @endforeach

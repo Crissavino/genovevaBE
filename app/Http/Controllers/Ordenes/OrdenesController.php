@@ -17,7 +17,8 @@ class OrdenesController extends Controller
         $colores = \App\Modelos\Colore::all();
         $stocks = \App\Modelos\Stock::all();
         $talles = \App\Modelos\Talle::all();
-        $ordenes = \App\Modelos\Ordene::all();
+        // $ordenes = \App\Modelos\Ordene::all();
+        $ordenes = \App\Modelos\Ordene::orderBy('created_at', 'desc')->get();
         $envios = \App\Modelos\Envio::all();
         $carritos = \App\Modelos\Carrito::all();
         $estadoPagos = \App\Modelos\Estadopago::all();
@@ -54,6 +55,10 @@ class OrdenesController extends Controller
 
         if (isset($data['estadoEnvio'])) {
             $orden->update(['estadoenvio_id' => $data['estadoEnvio']]);
+        }
+
+        if (isset($data['numSeguimiento'])) {
+            $orden->update(['numSeguimiento' => $data['numSeguimiento']]);
         }
 
         return redirect('/admin/ordenes');

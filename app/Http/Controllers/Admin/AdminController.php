@@ -50,7 +50,7 @@ class AdminController extends Controller
         request()->validate(
             [
                 'titulo' => 'required | min:3 | max:30',
-                'categoria_id' => 'required | numeric | min:1 | max:12',
+                'categoria_id' => 'required | numeric',
                 'nuevo' => 'required',
                 'popular' => 'required',
                 'categoriasSecundarias' => 'required | array | min:1 | max:3',
@@ -67,7 +67,6 @@ class AdminController extends Controller
                 'titulo.min' => 'El título debe tener como mínimo 3 letras',
                 'titulo.max' => 'El título debe tener como máximo 30 letras',
                 'categoria_id.required' => 'Tenes que elegir una categoria',
-                'categoria_id.min' => 'Tenes que elegir una categoria',
                 'nuevo.required' => 'Tenes que elegir si es un producto nuevo',
                 'popular.required' => 'Tenes que elegir si queres destacarlo',
                 'categoriasSecundarias.required' => 'Tenes que elegir por lo menos una categoria secundaria',

@@ -280,7 +280,7 @@ class PedidoController extends Controller
                 // ver nuevo shipments
                     $shipments = new MercadoPago\Shipments();
                     $shipments->mode = 'me2';
-                    $shipments->default_shipping_method = '73328';
+                    $shipments->default_shipping_method = 73328;
                     $shipments->dimensions = '30x30x30,800';
                     $shipments->receiver_address = array(
                         "zip_code" => $request->cp,
@@ -365,7 +365,7 @@ class PedidoController extends Controller
                 // ver nuevo shipments
                     $shipments = new MercadoPago\Shipments();
                     $shipments->mode = 'me2';
-                    $shipments->default_shipping_method = '73328';
+                    $shipments->default_shipping_method = 73328;
                     $shipments->dimensions = '30x30x30,800';
                     $shipments->receiver_address = array(
                         "zip_code" => $request->cp,

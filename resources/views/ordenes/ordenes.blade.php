@@ -7,7 +7,23 @@
     <p class="alert alert-info">{{ Session::get('message') }}</p>
     @endif
 
-    <table class="table table-hover table-borderless animated fadeIn fast">
+    {{-- <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
+        </div>
+        <input type="text" id="inputBusqueda" onkeyup="buscar()" class="form-control" placeholder="Buscar por # orden.." aria-label="Username"
+            aria-describedby="basic-addon1">
+    </div> --}}
+
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
+        </div>
+        <input type="text" id="inputBusquedaNombre" onkeyup="buscarNombre()" class="form-control" placeholder="Buscar por nombre.." aria-label="Username"
+            aria-describedby="basic-addon1">
+    </div>
+
+    <table id="miTabla" class="table table-hover table-borderless animated fadeIn fast">
         <thead class="thead-light">
             <tr scope="row">
                 <th class="text-center" scope="col"></th>
@@ -35,7 +51,7 @@
 
             @foreach ($ordenes as $orden)
             <tr scope="row">
-                <th>{{$orden->numOrden}}</th>
+                <td>{{$orden->numOrden}}</td>
                 <td>
                     @foreach ($usuarios as $user)
                         @if ($user->id === $orden->user_id)
@@ -180,6 +196,55 @@
             @endforeach
         </tbody>
     </table>
+
+    <script>
+        // function buscar() {
+        //     // Declare variables
+        //     var input, filter, table, tr, td, i, txtValue;
+        //     input = document.getElementById("inputBusqueda");
+        //     filter = input.value.toUpperCase();
+        //     table = document.getElementById("miTabla");
+        //     tr = table.getElementsByTagName("tr");
+            
+        //     // Loop through all table rows, and hide those who don't match the search query
+        //     for (i = 0; i < tr.length; i++) { 
+        //         td = tr[i].getElementsByTagName("td")[0]; 
+                
+        //         if (td) { 
+        //             txtValue = td.textContent || td.innerText; 
+        //             if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        //                 tr[i].style.display = "";
+        //             } else {
+        //                 tr[i].style.display = "none";
+        //             }
+        //         }
+        //     }
+        // }
+
+        function buscarNombre() {
+            // Declare variables
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("inputBusquedaNombre");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("miTabla");
+            tr = table.getElementsByTagName("tr");
+            
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) { 
+                td = tr[i].getElementsByTagName("td")[1]; 
+                console.log(td);
+                
+                if (td) { 
+                    txtValue = td.textContent || td.innerText; 
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
 </div>
 @endsection
 

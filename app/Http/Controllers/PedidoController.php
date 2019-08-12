@@ -311,7 +311,7 @@ class PedidoController extends Controller
                     'preferencePayer' => $preference->payer,
                     'preferenceClId' => $preference->client_id,
                     'preferenceId' => $preference->id,
-                    'preferenceId' => $preference->init_point,
+                    'preferenceInitPoint' => $preference->init_point,
                     'preference1' => $preference->sandbox_init_point,
                     'preference2' => $preference->shipments->receiver_address,
                 ], 201);
@@ -391,7 +391,7 @@ class PedidoController extends Controller
                     'preferencePayer' => $preference->payer,
                     'preferenceClId' => $preference->client_id,
                     'preferenceId' => $preference->id,
-                    'preferenceId' => $preference->init_point,
+                    'preferenceInitPoint' => $preference->init_point,
                     'preference1' => $preference->notification_url,
                     'preference2' => $preference->shipments,
                     'preferenceItem' => $preference->items,

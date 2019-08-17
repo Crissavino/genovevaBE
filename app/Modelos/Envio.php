@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Envio extends Model
 {
     use SoftDeletes;
-    protected $fillable = ['user_id', 'ordene_id', 'name', 'lastname', 'pais_id', 'calle', 'numero', 'cp', 'provincia', 'ciudad', 'telefono', 'email'];
+    protected $fillable = ['user_id', 'ordene_id', 'name_lastname', 'dni', 'pais_id', 'calle', 'numero', 'cp', 'provincia', 'ciudad', 'telefono', 'email'];
 
     public function ordene()
     {

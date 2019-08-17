@@ -211,8 +211,8 @@ class CreateProductosTable extends Migration
             $table->bigIncrements('id');
             $table->integer('user_id')->unsigned();
             $table->integer('ordene_id')->unsigned();
-            $table->string('name');
-            $table->string('lastname');
+            $table->string('name_lastname');
+            $table->string('dni');
             $table->string('pais_id');
             $table->string('calle');
             $table->integer('numero');

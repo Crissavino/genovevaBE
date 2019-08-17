@@ -55,10 +55,21 @@
                 <td>
                     @foreach ($usuarios as $user)
                         @if ($user->id === $orden->user_id)
+                            {{-- @dd($user) --}}
                             <div class="sobre">
                                 {{$user->name}} {{$user->lastname}}
                                 <span class="informacion-abajo btn-info">
                                     <ul class="list-group">
+                                        <li style="list-style:none;">
+                                            @foreach ($envios as $envio)
+                                                @if ($envio->user_id === $orden->user_id)
+                                                    DNI: {{ $envio->dni }}
+                                                    @php
+                                                        break;
+                                                    @endphp
+                                                @endif
+                                            @endforeach
+                                        </li>
                                         <li style="list-style:none;">
                                             <a style="color: white;" href="mailto:{{$user->email}}">{{$user->email}}</a>
                                         </li>

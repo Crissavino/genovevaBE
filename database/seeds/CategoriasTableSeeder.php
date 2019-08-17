@@ -38,7 +38,11 @@ class CategoriasTableSeeder extends Seeder
                 
                 ['nombre' => 'Musculosas'],
 
-                ['nombre' => 'Sweater']
+                ['nombre' => 'Shorts'],
+
+                ['nombre' => 'Sacos'],
+
+                ['nombre' => 'Sweaters']
             ]
         );
     }

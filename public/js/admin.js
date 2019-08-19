@@ -285,7 +285,7 @@
                 corrijo(categoria_id, 'alerta-categoria_id');
             }
 
-            if (categoria_id.value > 12) {
+            if (categoria_id.value > 15) {
                 event.preventDefault();
                 const alerta = document.createElement('span');
                 categoria_id.focus();

@@ -218,6 +218,11 @@ class AdminController extends Controller
 
         if (isset($data['imagenShop'])) {
 
+            //borro las imagenes que estaban cargadas antes
+            foreach ($producto->imagenesshops as $imagenShop) {
+                $imagenShop->delete();
+            }
+
             for ($i=0; $i < count($data['imagenShop']); $i++) { 
                 
                 $imagen = str_slug($data['titulo']).'-ImagenShop'.($i + 1);
@@ -233,8 +238,7 @@ class AdminController extends Controller
 
                 $datos = ['path' => $urlBackEnd.$pathImagen, 'producto_id' => $id];
 
-                $producto->imagenesshops[$i]->update($datos);
-
+                $guardoImagenShop = \App\Modelos\Imagenesshop::create($datos);
                 // $imagenesShopsIds[] = $producto->imagenesshops[$i]->id;
 
             }
@@ -246,75 +250,102 @@ class AdminController extends Controller
         //guardo las imagenes del detalle en su tabla y relaciono
 
         if (isset($data['imagenDetalle'])) {
-            if (count($data['imagenDetalle']) > count($producto->imagenesdetalles)) {
-                // $imagenesDetallesIds = [];
-                for ($i=0; $i < count($producto->imagenesdetalles); $i++) { 
 
-                    $imagen = str_slug($data['titulo']).'-ImagenDetalle'.($i + 1);
-
-                    $imagen = $imagen.'.'.request()->file('imagenDetalle')[$i]->extension();
-
-                    $pathImagen = request()->file('imagenDetalle')[$i]->storeAs('public/productos/imagenesDetalle', $imagen);
-
-                    $pathImagen = str_replace('public', 'storage', $pathImagen);
-
-                    $urlBackEnd = 'https://genovevabe.cf/';
-                    // $urlBackEnd = 'http://127.0.0.1:8000/';
-
-                    $datos = ['path' => $urlBackEnd.$pathImagen, 'producto_id' => $id];
-
-                    $producto->imagenesdetalles[$i]->update($datos);
-
-                    // $imagenesDetallesIds[] = $producto->imagenesdetalles[$i]->id;
-
-                }
-
-                for ($i=count($producto->imagenesdetalles); $i < count($data['imagenDetalle']); $i++) { 
-
-                    $imagen = str_slug($data['titulo']).'-ImagenDetalle'.($i + 1);
-
-                    $imagen = $imagen.'.'.request()->file('imagenDetalle')[$i]->extension();
-
-                    $pathImagen = request()->file('imagenDetalle')[$i]->storeAs('public/productos/imagenesDetalle', $imagen);
-
-                    $pathImagen = str_replace('public', 'storage', $pathImagen);
-
-                    $urlBackEnd = 'https://genovevabe.cf/';
-                    // $urlBackEnd = 'http://127.0.0.1:8000/';
-
-                    $datos = ['path' => $urlBackEnd.$pathImagen, 'producto_id' => $id];
-
-                    $guardoImagenDetalle = \App\Modelos\Imagenesdetalle::create($datos);
-
-                    // $imagenesDetallesIds[] = $guardoImagenDetalle->id;
-
-                }
-            }else{
-
-                for ($i=0; $i < count($data['imagenDetalle']); $i++) { 
-                    
-                    $imagen = str_slug($data['titulo']).'-ImagenDetalle'.($i + 1);
-
-                    $imagen = $imagen.'.'.request()->file('imagenDetalle')[$i]->extension();
-
-                    $pathImagen = request()->file('imagenDetalle')[$i]->storeAs('public/productos/imagenesDetalle', $imagen);
-
-                    $pathImagen = str_replace('public', 'storage', $pathImagen);
-
-                    $urlBackEnd = 'https://genovevabe.cf/';
-                    // $urlBackEnd = 'http://127.0.0.1:8000/';
-
-                    $datos = ['path' => $urlBackEnd.$pathImagen, 'producto_id' => $id];
-
-                    $producto->imagenesdetalles[$i]->update($datos);
-
-                    // $imagenesDetallesIds[] = $producto->imagenesdetalles[$i]->id;
-                }
-
-                for ($i=count($data['imagenDetalle']); $i < count($producto->imagenesdetalles); $i++) { 
-                    $producto->imagenesdetalles[$i]->delete();
-                }
+            //borro las imagenes que estaban cargadas antes
+            foreach ($producto->imagenesdetalles as $imagenDetalle) {
+                $imagenDetalle->delete();
             }
+
+            for ($i=0; $i < count($data['imagenDetalle']); $i++) { 
+
+                $imagen = str_slug($data['titulo']).'-ImagenDetalle'.($i + 1);
+    
+                $imagen = $imagen.'.'.request()->file('imagenDetalle')[$i]->extension();
+    
+                $pathImagen = request()->file('imagenDetalle')[$i]->storeAs('public/productos/imagenesDetalle', $imagen);
+    
+                $pathImagen = str_replace('public', 'storage', $pathImagen);
+    
+                $urlBackEnd = 'https://genovevabe.cf/';
+                // $urlBackEnd = 'http://127.0.0.1:8000/';
+    
+                $datos = ['path' => $urlBackEnd.$pathImagen, 'producto_id' => $id];
+    
+                $guardoImagenDetalle = \App\Modelos\Imagenesdetalle::create($datos);
+    
+                // $imagenesDetallesIds[] = $guardoImagenDetalle->id;
+            }
+
+
+            // if (count($data['imagenDetalle']) > count($producto->imagenesdetalles)) {
+            //     // $imagenesDetallesIds = [];
+            //     for ($i=0; $i < count($producto->imagenesdetalles); $i++) { 
+
+            //         $imagen = str_slug($data['titulo']).'-ImagenDetalle'.($i + 1);
+
+            //         $imagen = $imagen.'.'.request()->file('imagenDetalle')[$i]->extension();
+
+            //         $pathImagen = request()->file('imagenDetalle')[$i]->storeAs('public/productos/imagenesDetalle', $imagen);
+
+            //         $pathImagen = str_replace('public', 'storage', $pathImagen);
+
+            //         $urlBackEnd = 'https://genovevabe.cf/';
+            //         // $urlBackEnd = 'http://127.0.0.1:8000/';
+
+            //         $datos = ['path' => $urlBackEnd.$pathImagen, 'producto_id' => $id];
+
+            //         $producto->imagenesdetalles[$i]->update($datos);
+
+            //         // $imagenesDetallesIds[] = $producto->imagenesdetalles[$i]->id;
+
+            //     }
+
+            //     for ($i=count($producto->imagenesdetalles); $i < count($data['imagenDetalle']); $i++) { 
+
+            //         $imagen = str_slug($data['titulo']).'-ImagenDetalle'.($i + 1);
+
+            //         $imagen = $imagen.'.'.request()->file('imagenDetalle')[$i]->extension();
+
+            //         $pathImagen = request()->file('imagenDetalle')[$i]->storeAs('public/productos/imagenesDetalle', $imagen);
+
+            //         $pathImagen = str_replace('public', 'storage', $pathImagen);
+
+            //         $urlBackEnd = 'https://genovevabe.cf/';
+            //         // $urlBackEnd = 'http://127.0.0.1:8000/';
+
+            //         $datos = ['path' => $urlBackEnd.$pathImagen, 'producto_id' => $id];
+
+            //         $guardoImagenDetalle = \App\Modelos\Imagenesdetalle::create($datos);
+
+            //         // $imagenesDetallesIds[] = $guardoImagenDetalle->id;
+
+            //     }
+            // }else{
+
+            //     for ($i=0; $i < count($data['imagenDetalle']); $i++) { 
+                    
+            //         $imagen = str_slug($data['titulo']).'-ImagenDetalle'.($i + 1);
+
+            //         $imagen = $imagen.'.'.request()->file('imagenDetalle')[$i]->extension();
+
+            //         $pathImagen = request()->file('imagenDetalle')[$i]->storeAs('public/productos/imagenesDetalle', $imagen);
+
+            //         $pathImagen = str_replace('public', 'storage', $pathImagen);
+
+            //         $urlBackEnd = 'https://genovevabe.cf/';
+            //         // $urlBackEnd = 'http://127.0.0.1:8000/';
+
+            //         $datos = ['path' => $urlBackEnd.$pathImagen, 'producto_id' => $id];
+
+            //         $producto->imagenesdetalles[$i]->update($datos);
+
+            //         // $imagenesDetallesIds[] = $producto->imagenesdetalles[$i]->id;
+            //     }
+
+            //     for ($i=count($data['imagenDetalle']); $i < count($producto->imagenesdetalles); $i++) { 
+            //         $producto->imagenesdetalles[$i]->delete();
+            //     }
+            // }
             //guardo la relacion con imagenesDetalle en la tabla pivot
             // $producto->imagenesdetalles()->sync($imagenesDetallesIds);
         }

@@ -50,18 +50,38 @@
                                         <input type="text" id="inputBusqueda" onkeyup="buscar()" class="form-control" placeholder="Buscar por nombre.." aria-label="Username"
                                             aria-describedby="basic-addon1">
                                     </div>
-                                
+
+                                    {{-- <div class="categorias">
+                                        @php
+                                            $categoriasPresentes = [];
+                                        @endphp
+                                        @foreach ($productos as $prod)
+                                            @foreach ($categoriasPrincipales as $categoria)
+                                                @if ($prod->categoria_id === $categoria->id)
+                                                    @if (!in_array($categoria->nombre, $categoriasPresentes))
+                                                        @php
+                                                            $categoriasPresentes[] = [ 'id' => $categoria->id, 'nombre' => $categoria->nombre]
+                                                        @endphp
+                                                    @endif
+                                                @endif
+                                            @endforeach
+                                        @endforeach
+
+                                        @foreach ($categoriasPresentes as $categoria)
+                                            <button class="btn btn-outline-dark catId{{$categoria['id']}}" onclick="filtrarCategoria({{$categoria['id']}})">{{$categoria['nombre']}}</button>
+                                        @endforeach
+                                    </div> --}}
 
                                     <div class="row d-flex justify-content-around tarjetas">
                                         @foreach ($productos as $producto)
                                             <div class="card float-left col-12 col-md-6 m-2 tarjeta" id="prodId{{ $producto->id }}" style="max-width: 350px;">
                                                 <div class="row no-gutters">
-                                                    <div class="col-md-4 d-inline-block m-auto pl-1" style="overflow:hidden;">
+                                                    {{-- <div class="col-md-4 d-inline-block m-auto pl-1" style="overflow:hidden;">
                                                         <img src="{{$producto->imagenesshops[0]['path']}}" class="card-img align-middle" alt="...">
-                                                    </div>
-                                                    <div class="col-md-8">
+                                                    </div> --}}
+                                                    <div class="col-md-12">
                                                         <div class="card-body">
-                                                            <h5 class="card-title text-left titulo font-weight-bolder">{{ $producto->titulo }}</h5>
+                                                            <h5 class="card-title text-center titulo font-weight-bolder">{{ $producto->titulo }}</h5>
                                                         </div>
                                                         <ul class="list-group border-0">
                                                             <li class="list-group-item border-0">
@@ -125,6 +145,11 @@
                                     </div>
                             
                                     <script>
+                                        function filtrarCategoria(catId){
+                                            console.log(catId);
+                                            
+                                        }
+
                                         function buscar() {
                                             // Declare variables
                                             var input, filter, table, tr, td, i, txtValue;

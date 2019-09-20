@@ -69,7 +69,11 @@
                                                                                 <label for="">Nombre de Usuario</label>
                                                                                 <h5 class="titulo m-0">{{$user->name}} {{$user->lastname}}</h5>
                                                                                 <label for="">Envio a nombre de</label>
-                                                                                <h5 class="m-0">{{$orden->envio->name_lastname}}</h5>
+                                                                                @foreach ($envios as $envio)
+                                                                                    @if ($envio->user_id === $orden->user_id)
+                                                                                        <h5 class="m-0">{{$envio->name_lastname}}</h5>
+                                                                                    @endif
+                                                                                @endforeach
                                                                                 @foreach ($envios as $envio)
                                                                                     @if ($envio->user_id === $orden->user_id)
                                                                                         <label for="">DNI</label>

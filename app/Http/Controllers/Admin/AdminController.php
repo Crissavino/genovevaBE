@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
@@ -18,14 +19,22 @@ class AdminController extends Controller
         $stocks = \App\Modelos\Stock::all();
         $talles = \App\Modelos\Talle::all();
 
-        return view('admin.admin', [ 
-                                    'productos' => $productos,
-                                    'categoriasPrincipales' => $categoriasPrincipales,
-                                    'categoriasSecundarias' => $categoriasSecundarias,
-                                    'colores' => $colores,
-                                    'stocks' => $stocks,
-                                    'talles' => $talles,
-                                ]);
+        // return view('admin.admin', [ 
+        //                             'productos' => $productos,
+        //                             'categoriasPrincipales' => $categoriasPrincipales,
+        //                             'categoriasSecundarias' => $categoriasSecundarias,
+        //                             'colores' => $colores,
+        //                             'stocks' => $stocks,
+        //                             'talles' => $talles,
+        //                         ]);
+        return view('dashboard.productos.productos', [ 
+            'productos' => $productos,
+            'categoriasPrincipales' => $categoriasPrincipales,
+            'categoriasSecundarias' => $categoriasSecundarias,
+            'colores' => $colores,
+            'stocks' => $stocks,
+            'talles' => $talles,
+        ]);
     }
 
     public function createProducto()
@@ -36,13 +45,20 @@ class AdminController extends Controller
         $stocks = \App\Modelos\Stock::all();
         $talles = \App\Modelos\Talle::all();
 
-        return view('admin.producto-nuevo', [
-                                    'categoriasPrincipales' => $categoriasPrincipales,
-                                    'categoriasSecundarias' => $categoriasSecundarias,
-                                    'colores' => $colores,
-                                    'stocks' => $stocks,
-                                    'talles' => $talles,
-                                ]);
+        // return view('admin.producto-nuevo', [
+        //                             'categoriasPrincipales' => $categoriasPrincipales,
+        //                             'categoriasSecundarias' => $categoriasSecundarias,
+        //                             'colores' => $colores,
+        //                             'stocks' => $stocks,
+        //                             'talles' => $talles,
+        //                         ]);
+        return view('dashboard.productos.nuevoProd', [
+            'categoriasPrincipales' => $categoriasPrincipales,
+            'categoriasSecundarias' => $categoriasSecundarias,
+            'colores' => $colores,
+            'stocks' => $stocks,
+            'talles' => $talles,
+        ]);
     }
 
     public function insertProducto()
@@ -175,7 +191,7 @@ class AdminController extends Controller
         //guardo los colores del producto
         $guardoRelacionColores = $producto->colores()->sync($data['colores']);
 
-        return redirect('/admin');
+        return redirect('/admin/productos');
 
     }
 
@@ -193,16 +209,26 @@ class AdminController extends Controller
 
         $imagenesdetalles = \App\Modelos\Imagenesdetalle::all();
 
-        return view('admin.producto-edit', [
-                                            'producto' => $producto,
-                                            'categoriasPrincipales' => $categoriasPrincipales,
-                                            'categoriasSecundarias' => $categoriasSecundarias,
-                                            'colores' => $colores,
-                                            'stocks' => $stocks,
-                                            'talles' => $talles,
-                                            'imagenesshops' => $imagenesshops,
-                                            'imagenesdetalles' => $imagenesdetalles,
-                                        ]);
+        // return view('admin.producto-edit', [
+        //                                     'producto' => $producto,
+        //                                     'categoriasPrincipales' => $categoriasPrincipales,
+        //                                     'categoriasSecundarias' => $categoriasSecundarias,
+        //                                     'colores' => $colores,
+        //                                     'stocks' => $stocks,
+        //                                     'talles' => $talles,
+        //                                     'imagenesshops' => $imagenesshops,
+        //                                     'imagenesdetalles' => $imagenesdetalles,
+        //                                 ]);
+        return view('dashboard.productos.editProd', [
+            'producto' => $producto,
+            'categoriasPrincipales' => $categoriasPrincipales,
+            'categoriasSecundarias' => $categoriasSecundarias,
+            'colores' => $colores,
+            'stocks' => $stocks,
+            'talles' => $talles,
+            'imagenesshops' => $imagenesshops,
+            'imagenesdetalles' => $imagenesdetalles,
+        ]);
     }
 
     public function updateProducto($id){
@@ -377,7 +403,7 @@ class AdminController extends Controller
         //guardo los colores del producto
         $guardoRelacionColores = $producto->colores()->sync($data['colores']);
 
-        return redirect('/admin');
+        return redirect('/admin/productos');
 
     }
 
@@ -406,5 +432,40 @@ class AdminController extends Controller
         
         return redirect('/admin');
 
+    }
+
+    public function deleteProducto($prodId)
+    {
+
+        $producto = \App\Modelos\Producto::find($prodId);
+        
+        $producto->delete();
+
+        $mensaje = 'Se eliminó el producto correctamente';
+
+        $response = Response::json(['mensaje' => $mensaje], 200);
+
+        return $response;
+    }
+
+    public function updateVisible($prodId){
+
+        $producto = \App\Modelos\Producto::find($prodId);
+
+        $data = request()->all();
+
+        $dato = ['visible' => $data['visible']];
+
+        $producto->update($dato);
+
+        if ($data['visible'] == 1) {
+            session()->flash('message', $producto->titulo.' es ahora visible para todos.');
+        }
+
+        if ($data['visible'] == 2) {
+            session()->flash('message', $producto->titulo.' no es mas visible.');
+        }
+
+        return redirect('/admin/productos/');
     }
 }

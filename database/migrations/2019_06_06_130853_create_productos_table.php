@@ -25,6 +25,7 @@ class CreateProductosTable extends Migration
             $table->integer('descuento')->nullable();
             $table->integer('categoria_id');
             $table->integer('precio');
+            $table->integer('visible')->default(1);
             // $table->integer('stock');
             $table->softDeletesTz();
             $table->timestampsTz();

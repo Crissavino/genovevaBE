@@ -27,20 +27,34 @@ class OrdenesController extends Controller
 
 
 
-        return view('ordenes.ordenes', [ 
-                                    'productos' => $productos,
-                                    'categoriasPrincipales' => $categoriasPrincipales,
-                                    'categoriasSecundarias' => $categoriasSecundarias,
-                                    'colores' => $colores,
-                                    'stocks' => $stocks,
-                                    'talles' => $talles,
-                                    'ordenes' => $ordenes,
-                                    'carritos' => $carritos,
-                                    'usuarios' => $usuarios,
-                                    'estadoPagos' => $estadoPagos,
-                                    'estadoEnvios' => $estadoEnvios,
-                                    'envios' => $envios,
-                                ]);
+        // return view('ordenes.ordenes', [ 
+        //                             'productos' => $productos,
+        //                             'categoriasPrincipales' => $categoriasPrincipales,
+        //                             'categoriasSecundarias' => $categoriasSecundarias,
+        //                             'colores' => $colores,
+        //                             'stocks' => $stocks,
+        //                             'talles' => $talles,
+        //                             'ordenes' => $ordenes,
+        //                             'carritos' => $carritos,
+        //                             'usuarios' => $usuarios,
+        //                             'estadoPagos' => $estadoPagos,
+        //                             'estadoEnvios' => $estadoEnvios,
+        //                             'envios' => $envios,
+        //                         ]);
+        return view('dashboard.ordenes', [ 
+            'productos' => $productos,
+            'categoriasPrincipales' => $categoriasPrincipales,
+            'categoriasSecundarias' => $categoriasSecundarias,
+            'colores' => $colores,
+            'stocks' => $stocks,
+            'talles' => $talles,
+            'ordenes' => $ordenes,
+            'carritos' => $carritos,
+            'usuarios' => $usuarios,
+            'estadoPagos' => $estadoPagos,
+            'estadoEnvios' => $estadoEnvios,
+            'envios' => $envios,
+        ]);
     }
 
     public function updateOrden($id)

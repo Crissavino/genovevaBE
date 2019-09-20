@@ -19,6 +19,7 @@ class OrdenesController extends Controller
         $talles = \App\Modelos\Talle::all();
         // $ordenes = \App\Modelos\Ordene::all();
         $ordenes = \App\Modelos\Ordene::orderBy('created_at', 'desc')->get();
+        // $ordenes = \App\Modelos\Ordene::WHERE('envio_id', '!=', 0)->orderBy('created_at', 'desc')->get();
         $envios = \App\Modelos\Envio::all();
         $carritos = \App\Modelos\Carrito::all();
         $estadoPagos = \App\Modelos\Estadopago::all();

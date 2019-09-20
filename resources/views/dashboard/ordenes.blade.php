@@ -66,9 +66,9 @@
                                                                         @if ($user->id === $orden->user_id)
                                                                             {{-- @dd($user) --}}
                                                                             <div class="">
-                                                                                <label for="">Nombre de Usuario</label>
+                                                                                <label class="d-block mb-1 mt-1" for="">Nombre de Usuario</label>
                                                                                 <h5 class="titulo m-0">{{$user->name}} {{$user->lastname}}</h5>
-                                                                                <label for="">Envio a nombre de</label>
+                                                                                <label class="d-block mb-1 mt-1" for="">Envio a nombre de</label>
                                                                                 @foreach ($envios as $envio)
                                                                                     @if ($envio->user_id === $orden->user_id)
                                                                                         <h5 class="m-0">{{$envio->name_lastname}}</h5>
@@ -79,7 +79,7 @@
                                                                                 @endforeach
                                                                                 @foreach ($envios as $envio)
                                                                                     @if ($envio->user_id === $orden->user_id)
-                                                                                        <label for="">DNI</label>
+                                                                                        <label class="d-block mb-1 mt-1" for="">DNI</label>
                                                                                         <p class="d-block m-0">
                                                                                             {{ $envio->dni }}
                                                                                         </p>
@@ -89,14 +89,14 @@
                                                                                     @endif
                                                                                 @endforeach
                         
-                                                                                <label for="">Email</label>
+                                                                                <label class="d-block mb-1 mt-1" for="">Email</label>
                                                                                 <p class="d-block m-0">
                                                                                     <a style="color: black;" href="mailto:{{$user->email}}">{{$user->email}}</a>
                                                                                 </p>
                         
                                                                                 @foreach ($envios as $envio)
                                                                                     @if ($envio->user_id === $orden->user_id)
-                                                                                        <label for="">Telefono</label>
+                                                                                        <label class="d-block mb-1 mt-1" for="">Telefono</label>
                                                                                         <p class="d-block m-0">
                                                                                             <a style="color: black;" href="tel:+{{$envio->telefono}}">{{$envio->telefono}}</a>
                                                                                         </p>
@@ -151,7 +151,7 @@
                                                                             @endforeach
                                                                         @endif
                                                                     @endforeach
-                                                                    <label for="">Productos comprados</label>
+                                                                    <label class="d-block mb-1 mt-1" for="">Productos comprados</label>
                                                                         @foreach ($productosComprados as $prod)
                                                                             <p class="d-block m-0">
                                                                                 @php
@@ -178,7 +178,7 @@
                                                                     <form action="/admin/ordenes/{{$orden->id}}" id="estadoPagoForm{{$orden->id}}" method="post">
                                                                         @csrf
                                                                         @method('PUT')
-                                                                        <label for="">Estado del Pago</label>
+                                                                        <label class="d-block mb-1 mt-1" for="">Estado del Pago</label>
                                                                         <select class="form-control btn-outline-dark" name="estadoPago" id="estadoPago{{$orden->id}}">
                                                                             <option value="">Estado</option>
                                                                             @foreach ($estadoPagos as $estado)
@@ -199,7 +199,7 @@
                                                                 </li>
                         
                                                                 <li class="list-group-item border-0">
-                                                                    <label class="col-md-12 pl-0" for="">Direccion de envío</label>
+                                                                    <label class="d-block mb-1 mt-1" class="col-md-12 pl-0" for="">Direccion de envío</label>
                                                                     <div class="d-block">
                                                                         @foreach ($envios as $envio)
                                                                             @if ($envio->ordene_id === $orden->id)
@@ -230,7 +230,7 @@
                                                                     <form action="/admin/ordenes/{{$orden->id}}" id="estadoEnvioForm{{$orden->id}}" method="post">
                                                                         @csrf
                                                                         @method('PUT')
-                                                                        <label for="">Estado Envio</label>
+                                                                        <label class="d-block mb-1 mt-1" for="">Estado Envio</label>
                                                                         <select class="form-control btn-outline-dark" name="estadoEnvio" id="estadoEnvio{{$orden->id}}">
                                                                             <option value="">Estado</option>
                                                                             @foreach ($estadoEnvios as $estado)
@@ -254,7 +254,7 @@
                                                                         <form action="/admin/ordenes/{{$orden->id}}" id="numSeguimientoForm{{$orden->id}}" method="post">
                                                                             @csrf
                                                                             @method('PUT')
-                                                                            <label for="">Num seguimiento</label>
+                                                                            <label class="d-block mb-1 mt-1" for="">Num seguimiento</label>
                                                                             <input type="text" class="form-control" id="numSeguimiento{{$orden->id}}" value="{{$orden->numSeguimiento}}" name="numSeguimiento" placeholder="Num seguimiento">
                                                                             <button type="submit" class="d-none"></button>
                                                                         </form>

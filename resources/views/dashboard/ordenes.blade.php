@@ -72,6 +72,9 @@
                                                                                 @foreach ($envios as $envio)
                                                                                     @if ($envio->user_id === $orden->user_id)
                                                                                         <h5 class="m-0">{{$envio->name_lastname}}</h5>
+                                                                                        @php
+                                                                                            break;
+                                                                                        @endphp
                                                                                     @endif
                                                                                 @endforeach
                                                                                 @foreach ($envios as $envio)

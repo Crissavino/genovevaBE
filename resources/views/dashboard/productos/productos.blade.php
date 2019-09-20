@@ -72,7 +72,7 @@
                                         @endforeach
                                     </div> --}}
 
-                                    <div class="row d-flex justify-content-around tarjetas">
+                                    <div class="row d-flex justify-content-around tarjetas m-0 p-0">
                                         @foreach ($productos as $producto)
                                             <div class="card float-left col-12 col-md-6 m-2 tarjeta" id="prodId{{ $producto->id }}" style="max-width: 350px;">
                                                 <div class="row no-gutters">

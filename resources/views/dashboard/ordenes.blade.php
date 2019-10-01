@@ -51,8 +51,9 @@
                                                 <div class="card-body">
                                                     <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
                                                     <div class="legend">
-                                                        <i class="fa fa-circle text-info"></i> Ventas de este mes <br>
-                                                        <i class="fa fa-circle text-danger"></i> Ventas mes anterior
+                                                        <i class="fa fa-circle text-success"></i> Ventas de este mes <br>
+                                                        <i class="fa fa-circle text-danger"></i> Ventas del mes {{ date('n') - 1}} <br>
+                                                        <i class="fa fa-circle text-info"></i> Ventas del mes {{ date('n') - 2}} <br>
                                                         {{-- <i class="fa fa-circle text-warning"></i> Unsubscribe --}}
                                                     </div>
                                                     {{-- <hr>
@@ -64,6 +65,7 @@
                                             @php
                                                 $ordenesEsteMes = 0;
                                                 $ordenesMesAnterior = 0;
+                                                $ordenesMesAnteriorAnterior = 0;
                                             @endphp
 
                                             @foreach ($ordenes as $orden)
@@ -76,6 +78,12 @@
                                                 @if ((date("n") - 1) == $orden->created_at->format('n'))
                                                     @php
                                                         $ordenesMesAnterior++
+                                                    @endphp
+                                                @endif
+
+                                                @if ((date("n") - 2) == $orden->created_at->format('n'))
+                                                    @php
+                                                        $ordenesMesAnteriorAnterior++
                                                     @endphp
                                                 @endif
                                             @endforeach
@@ -373,9 +381,10 @@
 
         function initDashboardPageCharts(){
 
-            let ventasTotalesDosMeses = {{ $ordenesEsteMes }} + {{ $ordenesMesAnterior }}
-            let porceVentasEsteMes = ({{ $ordenesEsteMes }} / ventasTotalesDosMeses) * 100
-            let porceVentasMesAnterior = ({{ $ordenesMesAnterior }} / ventasTotalesDosMeses) * 100
+            let ventasTotalesTresMeses = {{ $ordenesEsteMes }} + {{ $ordenesMesAnterior }} + {{ $ordenesMesAnteriorAnterior }}
+            let porceVentasEsteMes = (({{ $ordenesEsteMes }} / ventasTotalesTresMeses) * 100).toFixed(2)
+            let porceVentasMesAnterior = (({{ $ordenesMesAnterior }} / ventasTotalesTresMeses) * 100).toFixed(2)
+            let porceVentasMesAnteriorAnterior = (({{ $ordenesMesAnteriorAnterior }} / ventasTotalesTresMeses) * 100).toFixed(2)
 
 
             var dataPreferences = {
@@ -398,8 +407,8 @@
             Chartist.Pie('#chartPreferences', dataPreferences, optionsPreferences);
 
             Chartist.Pie('#chartPreferences', {
-                labels: [porceVentasEsteMes + '% (' + {{$ordenesEsteMes}} + ')', porceVentasMesAnterior + '% (' + {{$ordenesMesAnterior}} + ')'],
-                series: [porceVentasEsteMes, porceVentasMesAnterior]
+                labels: [porceVentasEsteMes + '% (' + {{$ordenesEsteMes}} + ')', porceVentasMesAnterior + '% (' + {{$ordenesMesAnterior}} + ')', porceVentasMesAnteriorAnterior + '% (' + {{$ordenesMesAnteriorAnterior}} + ')'],
+                series: [porceVentasEsteMes, porceVentasMesAnterior, porceVentasMesAnteriorAnterior]
             });
         }
 

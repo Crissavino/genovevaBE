@@ -38,9 +38,48 @@
                                         <h4 class="card-title">Ordenes de envío</h4><br>
                                     </div>
                                     <div class="card-body">
-                                            @if(Session::has('message'))
+                                        @if(Session::has('message'))
                                             <p class="alert alert-info">{{ Session::get('message') }}</p>
                                         @endif
+
+                                        <div class="col-md-6 col-12 p-0">
+                                            <div class="card">
+                                                <div class="card-header ">
+                                                    <h4 class="card-title">Estadisticas de ventas</h4>
+                                                    <p class="card-category">Ventas ultimos meses</p>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
+                                                    <div class="legend">
+                                                        <i class="fa fa-circle text-info"></i> Ventas de este mes <br>
+                                                        <i class="fa fa-circle text-danger"></i> Ventas mes anterior
+                                                        {{-- <i class="fa fa-circle text-warning"></i> Unsubscribe --}}
+                                                    </div>
+                                                    {{-- <hr>
+                                                    <div class="stats">
+                                                        <i class="fa fa-clock-o"></i> Campaign sent 2 days ago
+                                                    </div> --}}
+                                                </div>
+                                            </div>
+                                            @php
+                                                $ordenesEsteMes = 0;
+                                                $ordenesMesAnterior = 0;
+                                            @endphp
+
+                                            @foreach ($ordenes as $orden)
+                                                @if (date("n") == $orden->created_at->format('n'))
+                                                    @php
+                                                        $ordenesEsteMes++
+                                                    @endphp
+                                                @endif
+
+                                                @if ((date("n") - 1) == $orden->created_at->format('n'))
+                                                    @php
+                                                        $ordenesMesAnterior++
+                                                    @endphp
+                                                @endif
+                                            @endforeach
+                                        </div>
                                     
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
@@ -329,6 +368,46 @@
     @include('partials.scripts')
     @include('dashboard.partials.scripts')
     <script src="/js/swal2.js"></script>
+    <script src="/dashboard/assets/js/demo.js"></script>
+    <script type="text/javascript">
+
+        function initDashboardPageCharts(){
+
+            let ventasTotalesDosMeses = {{ $ordenesEsteMes }} + {{ $ordenesMesAnterior }}
+            let porceVentasEsteMes = ({{ $ordenesEsteMes }} / ventasTotalesDosMeses) * 100
+            let porceVentasMesAnterior = ({{ $ordenesMesAnterior }} / ventasTotalesDosMeses) * 100
+
+
+            var dataPreferences = {
+                series: [
+                    [25, 30, 20, 25]
+                ]
+            };
+
+            var optionsPreferences = {
+                donut: true,
+                donutWidth: 40,
+                startAngle: 0,
+                total: 100,
+                showLabel: false,
+                axisX: {
+                    showGrid: false
+                }
+            };
+
+            Chartist.Pie('#chartPreferences', dataPreferences, optionsPreferences);
+
+            Chartist.Pie('#chartPreferences', {
+                labels: [porceVentasEsteMes + '% (' + {{$ordenesEsteMes}} + ')', porceVentasMesAnterior + '% (' + {{$ordenesMesAnterior}} + ')'],
+                series: [porceVentasEsteMes, porceVentasMesAnterior]
+            });
+        }
+
+        $(document).ready(function() {
+            // Javascript method's body can be found in assets/js/demos.js
+            initDashboardPageCharts();
+        });
+    </script>
     </body>
  
  </html>

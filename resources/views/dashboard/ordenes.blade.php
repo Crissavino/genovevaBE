@@ -43,25 +43,6 @@
                                         @endif
 
                                         <div class="col-md-6 col-12 p-0">
-                                            <div class="card">
-                                                <div class="card-header ">
-                                                    <h4 class="card-title">Estadisticas de ventas</h4>
-                                                    <p class="card-category">Ventas ultimos meses</p>
-                                                </div>
-                                                <div class="card-body">
-                                                    <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
-                                                    <div class="legend">
-                                                        <i class="fa fa-circle text-success"></i> Ventas de este mes <br>
-                                                        <i class="fa fa-circle text-danger"></i> Ventas del mes {{ date('n') - 1}} <br>
-                                                        <i class="fa fa-circle text-info"></i> Ventas del mes {{ date('n') - 2}} <br>
-                                                        {{-- <i class="fa fa-circle text-warning"></i> Unsubscribe --}}
-                                                    </div>
-                                                    {{-- <hr>
-                                                    <div class="stats">
-                                                        <i class="fa fa-clock-o"></i> Campaign sent 2 days ago
-                                                    </div> --}}
-                                                </div>
-                                            </div>
                                             @php
                                                 $ordenesEsteMes = 0;
                                                 $ordenesMesAnterior = 0;
@@ -87,6 +68,28 @@
                                                     @endphp
                                                 @endif
                                             @endforeach
+
+                                            <div class="card">
+                                                <div class="card-header ">
+                                                    <h4 class="card-title">Estadisticas de ventas</h4>
+                                                    <p class="card-category">Ventas ultimos meses</p>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
+                                                    <div class="legend">
+                                                        {{-- <i class="fa fa-circle text-success"></i> Ventas de este mes <br> --}}
+                                                        {{-- <i class="fa fa-circle text-danger"></i> Ventas del mes {{ date('n') - 1}} <br> --}}
+                                                        {{-- <i class="fa fa-circle text-info"></i> Ventas del mes {{ date('n') - 2}} <br> --}}
+                                                        <i class="fa fa-circle text-info"></i> Ventas de este mes <br>
+                                                        <i class="fa fa-circle text-danger"></i> Ventas del mes {{ date('n') - 1}} <br>
+                                                        <i class="fa fa-circle text-warning"></i> Ventas del mes {{ date('n') - 2}} <br>
+                                                    </div>
+                                                    {{-- <hr>
+                                                    <div class="stats">
+                                                        <i class="fa fa-clock-o"></i> Campaign sent 2 days ago
+                                                    </div> --}}
+                                                </div>
+                                            </div>
                                         </div>
                                     
                                         <div class="input-group mb-3">
@@ -410,6 +413,33 @@
                 labels: [porceVentasEsteMes + '% (' + {{$ordenesEsteMes}} + ')', porceVentasMesAnterior + '% (' + {{$ordenesMesAnterior}} + ')', porceVentasMesAnteriorAnterior + '% (' + {{$ordenesMesAnteriorAnterior}} + ')'],
                 series: [porceVentasEsteMes, porceVentasMesAnterior, porceVentasMesAnteriorAnterior]
             });
+            // if (porceVentasEsteMes == 0) {
+            //     Chartist.Pie('#chartPreferences', {
+            //         labels: [porceVentasMesAnterior + '% (' + {{$ordenesMesAnterior}} + ')', porceVentasMesAnteriorAnterior + '% (' + {{$ordenesMesAnteriorAnterior}} + ')'],
+            //         series: [porceVentasMesAnterior, porceVentasMesAnteriorAnterior]
+            //     });
+            // }
+
+            // if (porceVentasMesAnterior == 0) {
+            //     Chartist.Pie('#chartPreferences', {
+            //         labels: [porceVentasEsteMes + '% (' + {{$ordenesEsteMes}} + ')', porceVentasMesAnteriorAnterior + '% (' + {{$ordenesMesAnteriorAnterior}} + ')'],
+            //         series: [porceVentasEsteMes, porceVentasMesAnteriorAnterior]
+            //     });
+            // } 
+
+            // if (porceVentasMesAnteriorAnterior == 0) {
+            //     Chartist.Pie('#chartPreferences', {
+            //         labels: [porceVentasEsteMes + '% (' + {{$ordenesEsteMes}} + ')', porceVentasMesAnterior + '% (' + {{$ordenesMesAnterior}} + ')'],
+            //         series: [porceVentasEsteMes, porceVentasMesAnterior]
+            //     });
+            // }
+
+            // if (porceVentasEsteMes != 0 && porceVentasMesAnterior != 0 && porceVentasMesAnteriorAnterior != 0) {
+            //     Chartist.Pie('#chartPreferences', {
+            //         labels: [porceVentasEsteMes + '% (' + {{$ordenesEsteMes}} + ')', porceVentasMesAnterior + '% (' + {{$ordenesMesAnterior}} + ')', porceVentasMesAnteriorAnterior + '% (' + {{$ordenesMesAnteriorAnterior}} + ')'],
+            //         series: [porceVentasEsteMes, porceVentasMesAnterior, porceVentasMesAnteriorAnterior]
+            //     });
+            // }
         }
 
         $(document).ready(function() {

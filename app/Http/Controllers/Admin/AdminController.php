@@ -13,6 +13,12 @@ class AdminController extends Controller
     public function show()
     {
         $productos = \App\Modelos\Producto::all();
+
+        $productosLatest = \App\Modelos\Producto::latest()->get();
+        $productosOrderBy = \App\Modelos\Producto::orderBy('updated_at', 'desc')->get();
+        dd($productosLatest, $productosOrderBy);
+
+
         $categoriasPrincipales = \App\Modelos\Categoria::all();
         $categoriasSecundarias = \App\Modelos\Categoriassecundaria::all();
         $colores = \App\Modelos\Colore::all();

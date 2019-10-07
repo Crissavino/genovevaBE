@@ -11,8 +11,14 @@ class ProductController extends Controller
 {
     public function showProducts()
     {
-        $productos = \App\Modelos\Producto::all();
-        $response = Response::json($productos, 200);
+        // $productos = \App\Modelos\Producto::all();
+        // ordenados por created_at
+        // $productosLatest = \App\Modelos\Producto::latest()->get();
+        // ordenados por updated_at
+        $productosOrderBy = \App\Modelos\Producto::orderBy('updated_at', 'desc')->get();
+
+        $response = Response::json($productosOrderBy, 200);
+
         return $response;
     }
     
@@ -25,7 +31,6 @@ class ProductController extends Controller
     // }
 
     public function getDatos(){
-    // public function getCategoriasS(){
 
         $categoriasPrincipales = \App\Modelos\Categoria::all();
         $categoriasSecundarias = \App\Modelos\Categoriassecundaria::all();

@@ -96,6 +96,77 @@
                     </a>
                 </li>
             @endif --}}
+
+            <li class="nav-item float-left col-12">
+                <a class="nav-link">
+                    {{-- <i class="nc-icon nc-settings-tool-66"></i> --}}
+                    <label for="">Poner en mantenimiento?</label>
+                    <form action="/mantenimiento" method="post" id="formMantenimiento">
+                        <select name="estaEnMantenimiento" id="selectMantenimiento" class="form-control">
+                            <option value="1">Si</option>
+                            <option value="0">No</option>
+                        </select>
+                    </form>
+                </a>
+            </li>
         </ul>
     </div>
 </div>
+
+<script>
+    let formMantenimiento = document.querySelector('#formMantenimiento');
+    let mantenimientoUrl = '/api/mantenimiento'
+    let selectMantenimiento = document.querySelector('#selectMantenimiento');
+
+    fetch(mantenimientoUrl, {
+        method: 'GET', // or 'PUT'
+        // headers:{
+        //   'Content-Type': 'application/json',
+        //   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        // }
+      }).then(res => res.text())
+      .catch(error => console.error('Error:', error))
+      .then(response => {
+        document.querySelector('#selectMantenimiento').value = response;
+      });
+
+    function cambiarMantenimiento(valor){
+
+        var mantenimientoUrl = '/api/mantenimiento';
+        var data = {estaEnMantenimiento: valor};
+
+        fetch(mantenimientoUrl, {
+        method: 'PUT', // or 'PUT'
+        body: JSON.stringify(data), // data can be `string` or {object}!
+        headers:{
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+        }).then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(response => {
+            console.log('Success:', response)
+        });
+        // .then(response => console.log('Success:', response));
+
+
+
+    }
+
+    selectMantenimiento.addEventListener('change', () => {
+        console.log(selectMantenimiento.value);
+        cambiarMantenimiento(selectMantenimiento.value);
+        if (selectMantenimiento.value == 1) {
+            Swal.fire({
+                title: 'Estado del shop: ACTUALIZANDO'
+            });
+        } else {
+            Swal.fire({
+                title: 'Estado del shop: ONLINE'
+            });
+        }
+          
+    });
+
+    
+</script>

@@ -16,6 +16,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/mantenimiento', 'Controller@getMantenimiento')->middleware('cors');
+Route::put('/mantenimiento', 'Controller@putMantenimiento')->middleware('cors');
+
 Route::get('/productos', 'Productos\ProductController@showProducts')->middleware('cors');
 Route::get('/productosdestacados', 'Productos\ProductController@getProductosDestacados')->middleware('cors');
 

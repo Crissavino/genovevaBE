@@ -38,6 +38,13 @@ class CreateProductosTable extends Migration
             $table->timestampsTz();
         });
 
+        Schema::create('mantenimientos', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->boolean('estaEnMantenimiento')->default(0);
+            $table->softDeletesTz();
+            $table->timestampsTz();
+        });
+
         Schema::create('categoriassecundarias', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre');

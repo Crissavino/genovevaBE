@@ -32,4 +32,28 @@ class Controller extends BaseController
         return $response;
     }
 
+    public function getMantenimiento()
+    {
+        $mantenimiento = \App\Mantenimiento::first()->estaEnMantenimiento;
+
+        $response = Response::json($mantenimiento, 200);
+
+        return $response;
+    }
+
+    public function putMantenimiento(Request $request)
+    {
+        $estaEnMantenimiento = $request->estaEnMantenimiento;
+
+        $mantenimiento = \App\Mantenimiento::first();
+
+        $mantenimiento->update(['estaEnMantenimiento' => $estaEnMantenimiento]);
+
+        $mensaje = 'Se actualizo';
+
+        $response = Response::json($mensaje, 200);
+
+        return $response;
+    }
+
 }
